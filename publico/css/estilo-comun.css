@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.3em;
+    background-color: #F4E5E0;
+  }
+  h1 {
+    font-family: 'Shadows Into Light Two', cursive;
+    font-size: clamp(4rem, 8vw, 8rem);
+    transition: font-size 0.3s;
+    color: #252627;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-size: clamp(1rem, 8vw, 3rem);
+    transition: font-size 0.3s;
+    color: #252627;
+    margin-bottom: 1rem;
+  }
+  .barra-negra {
+    background-color: #252627;
+    height: 100px;
+    width: 100%;
+  }
+  button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2em;
+    padding: 0.5rem 1rem;
+  }
+  .boton {
+    border-radius: 20px;
+    background-color: #252627;
+    color: #F4E5E0;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+  }
+  .boton:hover {
+    background-color: #222;
+  }
+  .boton:active {
+    background-color: #555;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }

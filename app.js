@@ -17,9 +17,8 @@ app.use(layouts);
 app.set("layout", "./layouts/principal");
 app.set("view engine", "ejs");
 
-app.get("/", (peticion, respuesta) => {
-    respuesta.render("index");
-});
+// Rutas
+app.use("/", require("./servidor/rutas/index"));
 
 app.listen(puerto, () => {
     console.log(`El servidor está funcionando en el puerto ${puerto}`);
