@@ -37,7 +37,10 @@ exports.notas = async (peticion, respuesta) => {
         titulo: "Notas"
     }
 
-    respuesta.render("notas", locals);
+    respuesta.render("notas", {
+        locals,
+        layout: "../views/layouts/pag-notas"
+    });
 };
 
 //Página edicion-nota
@@ -46,5 +49,8 @@ exports.edicionNota = async (peticion, respuesta) => {
         titulo: "Edición de nota"
     }
 
-    respuesta.render("edicion-nota", locals);
+    respuesta.render("edicion-nota", {
+        locals,
+        layout: "../views/layouts/pag-edicion-nota"
+    });
 };

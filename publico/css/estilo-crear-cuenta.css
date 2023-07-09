@@ -1,0 +1,110 @@
+p {
+    color: #F4E5E0;
+}
+
+.contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+div.inicio-sesion,
+div.crear-cuenta {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 80px;
+}
+
+div.crear-cuenta {
+    background-image: url(../img/crear-cuenta-img.svg);
+    background-repeat: no-repeat;
+    background-position: cover;
+}
+
+div.avatar {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+div.avatar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #F4E5E0;
+}
+
+div.avatar-imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: none;
+}
+
+.avatar-uno {
+    background-image: url(../img/avatar_uno.svg);
+}
+
+.avatar-dos {
+    background-image: url(../img/avatar_dos.svg);
+}
+
+.avatar-tres {
+    background-image: url(../img/avatar_tres.svg);
+}
+
+.avatar-cuatro {
+    background-image: url(../img/avatar_cuatro.svg);
+}
+
+.avatar-cinco {
+    background-image: url(../img/avatar_cinco.svg);
+}
+
+button.doble {
+    display: block;
+    margin: 10px auto;
+}
+
+div.inicio-sesion {
+    text-align: center;
+}
+
+div.crear-cuenta p,
+div.crear-cuenta button {
+    margin-left: 70px;
+}
+
+div.botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.avatar-imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: none;
+    clip-path: circle(50%);
+}

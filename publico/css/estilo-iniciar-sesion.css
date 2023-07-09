@@ -47,15 +47,38 @@ div.contenedor-inicio-sesion {
 
 .campo {
   width: 100%;
-  height: 15px;
+  height: 50px;
   background-color: #252627;
   border-radius: 15px;
-  padding: 15px;
+  padding-top: 20px;
   margin-bottom: 20px;
   color: #F4E5E0;
   display: flex;
-  justify-content: left;
   align-items: center;
+  position: relative;
+}
+
+.campo-input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  color: #F4E5E0;
+  padding: 0;
+  margin-left: 10px;
+}
+
+.campo-contrasena {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.material-icons-outlined.visibilidad-contrasena-icono {
+  font-size: 1.5em;
+  color: #F4E5E0;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 .boton {
@@ -69,8 +92,10 @@ h2 {
 
 .material-symbols-outlined {
   position: absolute;
-  left: 15%;
-  top: 20%;
+  left: 15px;
+  top: 20px;
+  color: #252627;
+  cursor: pointer;
 }
 
 /* Media Queries */
@@ -79,23 +104,10 @@ h2 {
   .contenido {
     width: 90%;
   }
-
-  .material-symbols-outlined {
-    left: 10%;
-  }
 }
 
 @media (max-width: 480px) {
   .contenido {
     width: 95%;
-  }
-
-  .campo {
-    width: 100%;
-  }
-
-  .material-symbols-outlined {
-    left: 5%;
-    top: 15%;
   }
 }
