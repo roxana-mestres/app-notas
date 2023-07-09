@@ -1,0 +1,161 @@
+/* Estilos del encabezado */
+.titulo-avatar-buscador {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px 35px;
+    background-color: #F4E5E0;
+  }
+  
+  .titulo-avatar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .titulo-avatar h1 {
+    font-size: 2em;
+    margin-right: 10px;
+  }
+  
+  .titulo-avatar h1 span {
+    margin-right: 5px;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    background-image: url(../img/avatar_uno.svg);
+    background-size: cover;
+    background-position: center;
+    margin-top: -10px;
+  }
+  
+  .buscador {
+    display: flex;
+    align-items: center;
+    background-color: #252627;
+    padding: 5px;
+    border-radius: 20px;
+    max-height: 40px;
+    max-width: 30%;
+  }
+  
+  .buscador input {
+    background-color: transparent;
+    border: none;
+    color: #F4E5E0;
+    margin-right: 10px;
+    width: 100%;
+  }
+  
+  .material-symbols-outlined {
+    color: #F4E5E0;
+    font-size: 27px;
+    margin-right: 10px;
+  }
+  
+  /* Estilos del contenido y las notas */
+  .contenido {
+    width: calc(100vw - 60px);
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+  }
+  
+  .notas {
+    width: 90%;
+  }
+  
+  .nota {
+    max-width: 350px;
+    height: auto;
+    padding: 10px;
+    border-radius: 15px;
+    position: relative;
+    font-size: 16px;
+    line-height: 1.3;
+    background-color: #F4E5E0;
+    border: 2px solid #252627;
+  }
+  
+  .nota::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    border-radius: 15px;
+    background-color: #252627;
+    transition: 0.2s;
+  }
+  
+  .nota p {
+    margin-bottom: 0.4em;
+  }
+  
+  .nota .contenido-nota {
+    margin-bottom: 30px;
+  }
+  
+  .nota .contenido-nota p {
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  h3 {
+    margin-bottom: 15px;
+  }
+  
+  .flecha {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .circulo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 10px;
+    background-color: #252627;
+    color: #F4E5E0;
+  }
+  
+  .circulo.oculto {
+    display: none;
+  }
+  
+  .circulo.mostrar {
+    animation-name: desplegar;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes desplegar {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  .material-icons {
+    font-size: 24px;
+    color: #F27E5A;
+  }
+  
