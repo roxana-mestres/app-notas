@@ -166,3 +166,38 @@ h3 {
 html {
   scroll-behavior: smooth;
 }
+
+/*RESPONSIVE*/
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  div.avatar{
+    display:none;
+  }
+  div.buscador{
+    display: none;
+  }
+ div.contenido{
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
+ } 
+
+ div.nueva-nota{
+  flex-direction: row;
+ }
+ div.circulo{
+  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+ }
+
+ 
+ .notas-grid {
+  align-self: flex-start; /* Agregamos esta línea */
+  margin-top: 20px; 
+ }
+
+ div.titulo-avatar-buscador{
+  min-height: 100px;
+ }
+}

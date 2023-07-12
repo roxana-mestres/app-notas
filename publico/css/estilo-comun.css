@@ -19,7 +19,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1rem, 8vw, 3rem);
+  font-size: clamp(0.7rem, 8vw, 3rem);
   transition: font-size 0.3s;
   color: #252627;
   margin-bottom: 1rem;

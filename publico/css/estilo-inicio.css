@@ -4,8 +4,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-  }
-  
+  }  
+
   .contenedor {
     text-align: center;
     flex: 1;
@@ -22,6 +22,11 @@ body {
     align-items: center;
     height: 100%;
   }
+
+  .oculto{
+    display: none;
+  }
+
   
   
   

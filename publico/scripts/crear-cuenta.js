@@ -1,6 +1,6 @@
 const iconoOjo = document.querySelector('.icono-ojo');
 const inputContrasena = document.querySelector('input[type="password"]');
-const visibilidadContrasenaToggle = document.querySelector('.eye-off-icon');
+const visibilidadContrasenaToggle = document.querySelector('.icono-ojo-cerrado');
 
 iconoOjo.addEventListener('click', toggleVisibilidadContrasena);
 visibilidadContrasenaToggle.addEventListener('click', toggleVisibilidadContrasena);
