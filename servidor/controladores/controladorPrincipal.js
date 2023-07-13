@@ -54,3 +54,27 @@ exports.edicionNota = async (peticion, respuesta) => {
         layout: "../views/layouts/pag-edicion-nota"
     });
 };
+
+//Página 404
+exports.pag404 = async (peticion, respuesta) => {
+    const locals = {
+        titulo: "Esta página no existe"
+    }
+
+    respuesta.render("pag-404", {
+        locals,
+        layout: "../views/layouts/pag-404"
+    });
+};
+
+//Página 401
+exports.pag401 = async (peticion, respuesta) => {
+    const locals = {
+        titulo: "No tiene autorización"
+    }
+
+    respuesta.render("pag-401", {
+        locals,
+        layout: "../views/layouts/pag-401"
+    });
+};
