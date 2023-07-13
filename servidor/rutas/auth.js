@@ -9,35 +9,32 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.GOOGLE_CALLBACK_URL,
   authorizationParams: {
-      prompt: 'select_account'
+    prompt: 'select_account'
   }
 },
-    async function (accessToken, refreshToken, perfil, done) {
+async function (accessToken, refreshToken, perfil, done) {
+  console.log('Se hizo clic en el botón de Google');
+  const nuevoUsuario = {
+    googleId: perfil.id,
+    nombre: perfil.name.givenName
+  }
 
-        const nuevoUsuario = {
-            googleId: perfil.id,
-            nombre: perfil.name.givenName
-        }
-
-        try {
-            let usuario = await Usuario.findOne({ googleId: perfil.id });
-            if (usuario) {
-                done(null, usuario);
-            } else {
-                usuario = await Usuario.create(nuevoUsuario);
-                done(null, usuario);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  try {
+    let usuario = await Usuario.findOne({ googleId: perfil.id });
+    if (usuario) {
+      done(null, usuario);
+    } else {
+      usuario = await Usuario.create(nuevoUsuario);
+      done(null, usuario);
     }
+  } catch (error) {
+    console.log(error);
+  }
+}
 ));
 
 router.get('/auth/google',
-  (peticion, respuesta, siguiente) => {
-    console.log('Se hizo clic en el botón de Google');
-    passport.authenticate('google', { scope: ['profile'] })(peticion, respuesta, siguiente);
-  }
+  passport.authenticate('google', { scope: ['profile'] })
 );
 
 router.get('/google/callback', 
@@ -52,7 +49,11 @@ router.get('/google/callback',
 
 passport.serializeUser(async function(usuario, done) {
   console.log('Serializando usuario:', usuario);
-  done(null, usuario.id);
+  try {
+    done(null, usuario._id);
+  } catch (error) {
+    done(error);
+  }
 });
 
 passport.deserializeUser(async function(id, done) {
@@ -65,9 +66,10 @@ passport.deserializeUser(async function(id, done) {
   }
 });
 
-// Ruta para cerrar sesión
+
 router.get("/cerrar-sesion", (peticion, respuesta) => {
-  peticion.session.destroy(error => {
+  console.log("Se hizo clic en el botón de cerrar sesión");
+  peticion.logout(function(error) {
     if (error) {
       console.log(error);
       respuesta.send("Error al cerrar sesión");
@@ -77,5 +79,6 @@ router.get("/cerrar-sesion", (peticion, respuesta) => {
     }
   });
 });
+
 
 module.exports = router;

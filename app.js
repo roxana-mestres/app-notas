@@ -6,19 +6,20 @@ const path = require("path");
 const conectarBD = require("./servidor/config/db");
 const session = require("express-session");
 const passport = require("passport");
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo")(session);
+const mongoose = require("mongoose");
 
 const app = express();
 const puerto = process.env.PORT || 5000;
 
-app.use(session({
-    secret:"keyboard cat",
+app.use(
+  session({
+    secret: "mi-secreto",
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI
-    })
-}));
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -26,7 +27,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//Conectarse a base de datos
+// Conectarse a la base de datos
 conectarBD();
 
 // Archivos estáticos
@@ -42,11 +43,11 @@ app.use("/", require("./servidor/rutas/auth"));
 app.use("/", require("./servidor/rutas/index"));
 app.use("/", require("./servidor/rutas/notas"));
 
-//Ruta 404
+// Ruta 404
 app.get("*", (peticion, respuesta) => {
-    respuesta.status(404).render("pag-404.ejs")
+  respuesta.status(404).render("pag-404.ejs");
 });
 
 app.listen(puerto, () => {
-    console.log(`El servidor está funcionando en el puerto ${puerto}`);
+  console.log(`El servidor está funcionando en el puerto ${puerto}`);
 });

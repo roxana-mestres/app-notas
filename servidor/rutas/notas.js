@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { isLoggedIn } = require("../middleware/verificarAuth");
 const controladorNotas = require("../controladores/controladorNotas");
+const { ensureAuthenticated } = require("../middleware/verificarAuth");
 
-router.get("/notas", isLoggedIn, controladorNotas.notas);
+router.get("/notas", ensureAuthenticated, controladorNotas.notas);
 
 module.exports = router;
