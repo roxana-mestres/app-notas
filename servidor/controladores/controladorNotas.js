@@ -6,6 +6,6 @@ exports.notas = async (peticion, respuesta) => {
 
     respuesta.render("notas", {
         locals,
-        layouts: "../views/layouts/notas"
+        layout: "../views/layouts/notas"
     });
 };

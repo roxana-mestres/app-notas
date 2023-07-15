@@ -78,3 +78,10 @@ exports.pag401 = async (peticion, respuesta) => {
         layout: "../views/layouts/pag-401"
     });
 };
+
+//Cerrar sesión
+
+exports.cerrarSesion = async (peticion, respuesta) => {
+    peticion.session.destroy(); // Eliminar la sesión
+    respuesta.redirect("/"); // Redirigir a la página de inicio
+  };
