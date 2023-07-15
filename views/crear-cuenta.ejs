@@ -1,28 +1,30 @@
 <div class="contenedor">
     <div class="crear-cuenta">
-        <div class="avatar">
-            <div class="color"></div>
-            <div class="avatar-imagen avatar-uno"></div>
-            <div class="avatar-imagen avatar-dos"></div>
-            <div class="avatar-imagen avatar-tres"></div>
-            <div class="avatar-imagen avatar-cuatro"></div>
-            <div class="avatar-imagen avatar-cinco"></div>
-        </div>
-        <input type="text" class="form" placeholder="Nombre_">
-        <input type="text" class="form" placeholder="Apellidos_">
-        <input type="email" class="form" placeholder="Correo electrónico_">
-        <div class="contenedor-contrasena">
-            <input type="password" class="form" placeholder="Contraseña_">
-            <span class="material-icons-outlined icono-ojo" style="font-size: 1em;">visibility_off</span>
-            <span class="material-icons-outlined icono-ojo-cerrado" style="font-size: 1em; display: none;">visibility</span>
-        </div>
-        <button class="boton-reverso doble">Crear cuenta</button>
+        <form action="/crear-cuenta" method="POST">
+            <div class="avatar">
+                <div class="color"></div>
+                <div class="avatar-imagen avatar-uno"></div>
+                <div class="avatar-imagen avatar-dos"></div>
+                <div class="avatar-imagen avatar-tres"></div>
+                <div class="avatar-imagen avatar-cuatro"></div>
+                <div class="avatar-imagen avatar-cinco"></div>
+            </div>
+            <input type="text" class="form" placeholder="Nombre_" name="nombre">
+            <input type="text" class="form" placeholder="Apellidos_" name="apellidos">
+            <input type="email" class="form" placeholder="Correo electrónico_" name="email">
+            <div class="contenedor-contrasena">
+                <input type="password" class="form" placeholder="Contraseña_" name="contrasena">
+                <span class="material-icons-outlined icono-ojo" style="font-size: 1em;">visibility_off</span>
+                <span class="material-icons-outlined icono-ojo-cerrado" style="font-size: 1em; display: none;">visibility</span>
+            </div>
+            <button class="boton-reverso doble" type="submit">Crear cuenta</button>
+        </form>
     </div>
     <div class="inicio-sesion">
         <h2>¿Ya tienes cuenta? <br/> Inicia sesión</h2>
         <div class="botones">
             <button class="boton doble"><a href="iniciar-sesion">Iniciar sesión</a></button>
-            <button class="boton doble" style="background-color: #FF3131;"><a href="/auth/google">Google</a></button>
+            <button class="boton doble" style="background-color: #FF3131;">Google</button>
         </div>
     </div>
 </div>

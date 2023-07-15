@@ -1,51 +1,40 @@
 require("dotenv").config();
 
 const express = require("express");
-const layouts = require("express-ejs-layouts");
-const path = require("path");
-const conectarBD = require("./servidor/config/db");
 const session = require("express-session");
-const passport = require("passport");
-const MongoStore = require("connect-mongo")(session);
+const path = require("path");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const layouts = require("express-ejs-layouts");
 
 const app = express();
 const puerto = process.env.PORT || 5000;
 
-app.use(
-  session({
-    secret: "mi-secreto",
-    resave: false,
-    saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  })
-);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "publico")));
+
+app.use(session({
+  secret: "una cadena secreta cualquiera",
+  resave: false,
+  saveUninitialized: false
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// Conectarse a la base de datos
-conectarBD();
-
-// Archivos estáticos
-app.use(express.static(path.join(__dirname, "publico")));
-
 // Motor de plantillas
 app.use(layouts);
-app.set("layout", "./layouts/principal");
+app.set("layout", "layouts/principal");
 app.set("view engine", "ejs");
 
-// Rutas
-app.use("/", require("./servidor/rutas/auth"));
-app.use("/", require("./servidor/rutas/index"));
-app.use("/", require("./servidor/rutas/notas"));
+// Rutas generales
+app.use("/", require(path.join(__dirname, "servidor", "rutas", "index")));
+app.use("/", require(path.join(__dirname, "servidor", "rutas", "notas")));
 
 // Ruta 404
 app.get("*", (peticion, respuesta) => {
-  respuesta.status(404).render("pag-404.ejs");
+  respuesta.status(404).render("pag-404");
 });
 
 app.listen(puerto, () => {

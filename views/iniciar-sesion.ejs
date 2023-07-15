@@ -1,19 +1,22 @@
 <div class="barra-negra"></div>
-<span class="material-symbols-outlined" style="font-size: 70px; color: #252627;"><a href="crear-cuenta">arrow_back</a>
+<span class="material-symbols-outlined" style="font-size: 70px; color: #252627;">
+  <a href="crear-cuenta">arrow_back</a>
 </span>
 <div class="contenido">
-  <h2>Mis notas_</h2>
+  <h2>Mis notas</h2>
   <div class="contenedor-inicio-sesion">
-    <div class="campo">
-      <input type="email" placeholder="Correo electrónico_" class="campo-input">
-    </div>
-    <div class="campo campo-contrasena">
-      <input type="password" placeholder="Contraseña_" class="campo-input">
-      <span class="material-icons-outlined visibilidad-contrasena-icono" style="color: #F4E5E0;">
-        visibility_off
-      </span>
-    </div>
-    <button class="boton">Iniciar sesión</button>
+    <form action="/iniciar-sesion" method="POST">
+      <div class="campo">
+        <input type="email" name="email" placeholder="Correo electrónico" class="campo-input" required>
+      </div>
+      <div class="campo campo-contrasena">
+        <input type="password" name="password" placeholder="Contraseña" class="campo-input" required>
+        <span class="material-icons-outlined visibilidad-contrasena-icono" style="color: #F4E5E0;">
+          visibility_off
+        </span>
+      </div>
+      <button type="submit" class="boton">Iniciar sesión</button>
+    </form>
     <p>También puedes <a href="crear-cuenta"><b>crear una cuenta</b></a></p>
-  </div> 
+  </div>
 </div>

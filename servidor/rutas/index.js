@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const controladorPrincipal = require("../controladores/controladorPrincipal");
 
-//Rutas app
+// Rutas app
 router.get("/", controladorPrincipal.paginaInicial);
 router.get("/crear-cuenta", controladorPrincipal.crearCuenta);
 router.get("/iniciar-sesion", controladorPrincipal.iniciarSesion);
