@@ -83,8 +83,9 @@ button.doble {
     margin-right: auto;
 }
 
-span.material-icons-outlined.icono-ojo, span.material-icons-outlined.icono-ojo-cerrado{
-    color:#F4E5E0;
+span.material-icons-outlined.icono-ojo,
+span.material-icons-outlined.icono-ojo-cerrado {
+    color: #F4E5E0;
 }
 
 div.inicio-sesion {
@@ -127,32 +128,57 @@ div.botones {
     padding-left: 40px;
 }
 
-div.inicio-sesion h2{
-    
+div.inicio-sesion h2 {}
+
+.alerta {
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    margin-bottom: 10px;
+}
+
+.alerta strong {
+    font-weight: bold;
+}
+
+.alerta ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.alerta li {
+    margin-bottom: 5px;
 }
 
 .mensaje-error {
     background-color: #F4E5E0;
     color: #252627;
-    display: none;
-    padding: 5px;
+    font-family: 'Nunito', sans-serif;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 300px;
+    line-height: 1.5;
     margin-top: 5px;
-}  
+    padding-left: 20px;
+}
+
 
 @media only screen and (min-width: 676px) and (max-width: 1024px) {
-    body{
+    body {
         background-image: url(../img/crear-cuenta-img_der.svg);
     }
 
-    .boton-reverso.doble{
-    border-radius: 20px;
-    background-color: #252627;
-    color: #F4E5E0;
-    transition: transform 0.3s;
-    margin-bottom: 20px;
+    .boton-reverso.doble {
+        border-radius: 20px;
+        background-color: #252627;
+        color: #F4E5E0;
+        transition: transform 0.3s;
+        margin-bottom: 20px;
     }
 
-    .boton.doble{
+    .boton.doble {
         border-radius: 20px;
         background-color: #F4E5E0;
         color: #252627;
@@ -172,25 +198,27 @@ div.inicio-sesion h2{
         font-family: 'Nunito', sans-serif;
         font-size: 1em;
         color: #252627;
-      }
-      
-      input.form::placeholder {
-        color: #252627;
-      }
-      
-      input.form:focus {
-        box-shadow: none;
-      }
+    }
 
-    span.material-icons-outlined.icono-ojo,  span.material-icons-outlined.icono-ojo-cerrado{
+    input.form::placeholder {
+        color: #252627;
+    }
+
+    input.form:focus {
+        box-shadow: none;
+    }
+
+    span.material-icons-outlined.icono-ojo,
+    span.material-icons-outlined.icono-ojo-cerrado {
         color: #252627;
     }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 675px) {
-    body{
+    body {
         background-image: none;
     }
+
     div.crear-cuenta {
         background-image: url(../img/crear-cuenta-img-movil.svg);
         background-repeat: no-repeat;

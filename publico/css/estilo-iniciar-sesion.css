@@ -46,17 +46,21 @@ div.contenedor-inicio-sesion {
   margin-top: 50px;
 }
 
-.campo {
+div.campo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
-  height: 50px;
+  height: auto;
+  min-height: 50px;
   background-color: #252627;
   border-radius: 15px;
   padding-top: 20px;
   margin-bottom: 20px;
   color: #F4E5E0;
-  display: flex;
-  align-items: center;
   position: relative;
+  padding-bottom: 10px;
 }
 
 div.contenedor-inicio-sesion {
@@ -66,17 +70,34 @@ div.contenedor-inicio-sesion {
 
 .campo-input {
   flex: 1;
+  width: 100%;
   border: none;
   background: none;
   outline: none;
   color: #F4E5E0;
   padding: 0;
   margin-left: 10px;
+  text-align: left;
+  font-size: clamp(14px, 3vw, 20px);
 }
 
-div.campo {
-  height: auto;
-  padding: 5px;
+div.contenedor-contrasena{
+  width: fit-content;
+}
+
+.campo {
+  width: 100%;
+  height: 50px;
+  background-color: #252627;
+  border-radius: 15px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  color: #F4E5E0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: flex-start; /* Align text to the left */
+  position: relative;
 }
 
 .campo-contrasena {
@@ -85,11 +106,12 @@ div.campo {
   align-items: center;
 }
 
-.material-icons-outlined.visibilidad-contrasena-icono {
+span.material-icons-outlined {
   font-size: 1.5em;
   color: #F4E5E0;
   cursor: pointer;
   margin-right: 10px;
+  padding-right: 10px;
 }
 
 .boton {
@@ -107,6 +129,10 @@ span.material-symbols-outlined {
   position: relative;
   right: 32%;
   top: 5%;
+}
+
+div.mensaje-error {
+  margin:10px;
 }
 
 /*RESPONSIVE*/

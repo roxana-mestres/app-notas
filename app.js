@@ -5,9 +5,7 @@ const session = require("express-session");
 const path = require("path");
 const mongoose = require("mongoose");
 const layouts = require("express-ejs-layouts");
-const controladorNotas = require("./servidor/controladores/controladorNotas");
-const controladorAuth = require("./servidor/rutas/auth");
-const autenticar = require("./servidor/middleware/autenticar");
+const rutasAuth = require("./servidor/rutas/auth");
 
 const app = express();
 const puerto = process.env.PORT || 5000;
@@ -31,6 +29,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "publico")));
+app.use("/", rutasAuth);
 
 app.use(session({
   secret: "una cadena secreta cualquiera",
@@ -42,9 +41,6 @@ app.use(session({
 app.use(layouts);
 app.set("layout", "layouts/principal");
 app.set("view engine", "ejs");
-
-// Rutas de autenticación
-app.use("/", controladorAuth);
 
 // Rutas específicas para archivos JavaScript y CSS
 app.use("/scripts", express.static(path.join(__dirname, "publico", "scripts")));

@@ -15,7 +15,7 @@ exports.crearCuenta = async (peticion, respuesta) => {
 
     respuesta.render("crear-cuenta", {
         locals,
-        layout: "../views/layouts/pag-crear-cuenta"
+        layout: "layouts/pag-crear-cuenta"
     });
 };
 

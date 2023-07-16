@@ -1,16 +1,11 @@
 const express = require("express");
 const router = express.Router();
-
 const controladorAuth = require("../controladores/controladorAuth");
 
-router.post("/crear-cuenta", (peticion, respuesta, siguiente) => {
-    console.log("Ruta: /crear-cuenta");
-    controladorAuth.registro(peticion, respuesta, siguiente);
-});
+// Ruta para registrar un usuario
+router.post("/crear-cuenta", controladorAuth.registro);
 
-router.post("/iniciar-sesion", (peticion, respuesta, siguiente) => {
-    console.log("Ruta: /iniciar-sesion");
-    controladorAuth.inicioSesion(peticion, respuesta, siguiente);
-});
+// Ruta para iniciar sesión
+router.post("/iniciar-sesion", controladorAuth.inicioSesion);
 
 module.exports = router;
