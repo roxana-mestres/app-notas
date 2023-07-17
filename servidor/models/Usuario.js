@@ -1,34 +1,31 @@
 const mongoose = require("mongoose");
 
-const usuarioSchema = new mongoose.Schema({
-  nombre: {
+const Schema = mongoose.Schema;
+const schemaUsuario = new Schema({
+  googleId: {
     type: String,
-    required: [true, "El campo 'nombre' es obligatorio."],
+    required: true
   },
-  apellido: {
+  displayName: {
     type: String,
-    required: false,
+    required: true
   },
-  email: {
+  firstName: {
     type: String,
-    required: [true, "El campo 'email' es obligatorio."],
-    unique: true,
-    trim: true,
-    validate: {
-      validator: function (email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,3}$/.test(email);
-      },
-      message: "El correo no es válido. Debe tener un punto y dos o tres dígitos al final.",
-    },
+    required: true
   },
-  password: {
+  lastName: {
     type: String,
-    required: [true, "El campo 'password' es obligatorio."],
-    minlength: [8, "La contraseña debe tener al menos 8 caracteres."],
-    trim: true,
+    required: true
   },
+  profileImage: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-const Usuario = mongoose.model("Usuario", usuarioSchema);
-
-module.exports = Usuario;
+module.exports = mongoose.model("Usuario", schemaUsuario);

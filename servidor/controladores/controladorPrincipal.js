@@ -31,30 +31,6 @@ exports.iniciarSesion = async (peticion, respuesta) => {
     });
 };
 
-//Página notas
-exports.notas = async (peticion, respuesta) => {
-    const locals = {
-        titulo: "Notas"
-    }
-
-    respuesta.render("notas", {
-        locals,
-        layout: "../views/layouts/pag-notas"
-    });
-};
-
-//Página edicion-nota
-exports.edicionNota = async (peticion, respuesta) => {
-    const locals = {
-        titulo: "Edición de nota"
-    }
-
-    respuesta.render("edicion-nota", {
-        locals,
-        layout: "../views/layouts/pag-edicion-nota"
-    });
-};
-
 //Página 404
 exports.pag404 = async (peticion, respuesta) => {
     const locals = {
