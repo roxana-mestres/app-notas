@@ -28,4 +28,15 @@ const schemaUsuario = new Schema({
   }
 });
 
+schemaUsuario.pre("save", function (next) {
+  console.log("Guardando usuario:");
+  console.log("googleId:", this.googleId);
+  console.log("displayName:", this.displayName);
+  console.log("firstName:", this.firstName);
+  console.log("lastName:", this.lastName);
+  console.log("profileImage:", this.profileImage);
+
+  next();
+});
+
 module.exports = mongoose.model("Usuario", schemaUsuario);

@@ -28,23 +28,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "publico")));
 
-// Conectar a base de datos
-
+// Conectar a la base de datos
 conectarBD();
+
+// Establecer el directorio de vistas
+app.set("views", path.join(__dirname, "views"));
 
 // Motor de plantillas
 app.use(layouts);
-app.set("layout", "layouts/principal");
 app.set("view engine", "ejs");
+app.set("layout", "layouts/principal");
 
 // Rutas específicas para archivos JavaScript y CSS
 app.use("/scripts", express.static(path.join(__dirname, "publico", "scripts")));
 app.use("/css", express.static(path.join(__dirname, "publico", "css")));
 
 // Rutas generales
-app.use("/", require("./servidor/rutas/auth"));
-app.use("/", require("./servidor/rutas/index"));
-app.use("/", require("./servidor/rutas/notas"));
+app.use("/", require(path.join(__dirname, "servidor", "rutas", "auth")));
+app.use("/", require(path.join(__dirname, "servidor", "rutas", "index")));
+app.use("/", require(path.join(__dirname, "servidor", "rutas", "notas")));
 
 // Ruta 404
 app.use((peticion, respuesta) => {
@@ -52,5 +54,5 @@ app.use((peticion, respuesta) => {
 });
 
 app.listen(puerto, () => {
-  console.log(`El servidor está funcionando en el puerto ${puerto};`);
-})
+  console.log(`El servidor está funcionando en el puerto ${puerto}`);
+});

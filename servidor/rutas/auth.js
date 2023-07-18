@@ -9,35 +9,39 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: process.env.CALLBACK_URL
 },
-  async function (accessToken, refreshToken, profile, done) {
-
-    const nuevoUsuario = {
-      googleId: profile.id,
-      displayName: profile.displayName,
-      firstName: profile.givenName,
-      lastName: profile.familyName,
-      profileImage: profile.photos[0].value
-    }
-    try {
-      let usuario = await Usuario.findOne({ googleId: profile.id });
-      if (usuario) {
-        done(null, usuario);
-      } else {
-        usario = await Usuario.create(nuevoUsuario);
-        done(null, usuario);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+async function (accessToken, refreshToken, profile, done) {
+  console.log("Google authentication callback received");
+  console.log("Profile:", profile);
+  
+  const nuevoUsuario = {
+    googleId: profile.id,
+    displayName: profile.displayName,
+    firstName: profile.name.givenName,
+    lastName: profile.name.familyName,
+    profileImage: profile.photos[0].value
   }
-));
+  
+  try {
+    let usuario = await Usuario.findOne({ googleId: profile.id });
+    if (usuario) {
+      console.log("Existing user found");
+      done(null, usuario);
+    } else {
+      console.log("New user created");
+      usuario = await Usuario.create(nuevoUsuario);
+      done(null, usuario);
+    }
+  } catch (error) {
+    console.log("Error during authentication:", error);
+    done(error, null);
+  }
+}));
 
 // Ruta para iniciar sesión con Google
 router.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
 
 // Obtener información de usuario
-
 router.get('/google/callback',
   passport.authenticate('google', {
     failureRedirect: "/",
@@ -45,33 +49,37 @@ router.get('/google/callback',
   }),
 );
 
-// Destroy sesión
-
+// Cerrar sesión
 router.get("/cerrar-sesion", (peticion, respuesta) => {
+  console.log("Logging out the user");
+  
   peticion.session.destroy(error => {
-    if(error) {
-      console.log(error);
+    if (error) {
+      console.log("Error while destroying session:", error);
       respuesta.send("Error al cerrar sesión");
     } else {
+      console.log("Session destroyed successfully");
       respuesta.redirect("/");
     }
-    
-  }); 
+  });
 });
 
 // Persistencia de datos luego de autenticación
-
 passport.serializeUser(function (usuario, done) {
+  console.log("Serializing user:", usuario);
   done(null, usuario.id);
 });
 
 // Obtener información usuario de la sesión
-
 passport.deserializeUser(async (id, done) => {
+  console.log("Deserializing user with ID:", id);
+  
   try {
     const usuario = await Usuario.findById(id);
+    console.log("Deserialized user:", usuario);
     done(null, usuario);
   } catch (error) {
+    console.log("Error while deserializing user:", error);
     done(error, null);
   }
 });

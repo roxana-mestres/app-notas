@@ -98,6 +98,11 @@
   border-width: 15px 2px 2px 15px;
   border-style: solid;
   border-color: #F27E5A;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nota:active {
+  transform: scale(0.95);
 }
 .nota p {
   margin-bottom: 0.4em;
@@ -155,11 +160,11 @@ h3 {
 .boton-subir{
   position: fixed;
   right: 32px;
+  bottom: 32px;
   display: flex;
   transition: all .4s;
 }
 .boton-subir.enlace_activo{
-  bottom: 32px;
   pointer-events: auto;
   opacity: 1;
 }

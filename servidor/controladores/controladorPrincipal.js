@@ -1,3 +1,4 @@
+const path = require("path");
 //Página inicial
 exports.paginaInicial = async (peticion, respuesta) => {
     const locals = {
@@ -15,7 +16,7 @@ exports.crearCuenta = async (peticion, respuesta) => {
 
     respuesta.render("crear-cuenta", {
         locals,
-        layout: "layouts/pag-crear-cuenta"
+        layout: "../views/layouts/pag-crear-cuenta"
     });
 };
 
@@ -54,10 +55,3 @@ exports.pag401 = async (peticion, respuesta) => {
         layout: "../views/layouts/pag-401"
     });
 };
-
-//Cerrar sesión
-
-exports.cerrarSesion = async (peticion, respuesta) => {
-    peticion.session.destroy(); // Eliminar la sesión
-    respuesta.redirect("/"); // Redirigir a la página de inicio
-  };

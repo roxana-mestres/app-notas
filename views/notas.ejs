@@ -1,6 +1,6 @@
 <div class="titulo-avatar-buscador">
   <div class="titulo-avatar">
-    <h1>Hola,<br/>Roxana</h1>
+    <h1>¡ Hola, <br/> <%= nombre %> !</h1>
     <div class="avatar"></div>
   </div>
   <div class="buscador">
@@ -24,7 +24,24 @@
 
   <div class="centrar-grid">
     <div class="notas-grid">
+      <% if(notas.length > 0) { %>
+        <% notas.forEach(nota => { %>
+          <a href="/edicion-nota/<%= nota._id %>" class="nota">
+            <div class="contenido-nota">
+              <h3>
+                <%= nota.titulo || "Título de la nota" %>
+              </h3>
+              <p>
+                <%= nota.cuerpo || "Texto de la nota" %>
+              </p>
+            </div>
+            <div class="flecha">
+              <span class="material-icons">arrow_forward</span>
+            </div>
+          </a>
+        <% }); %>
+      <% } %>
     </div>
   </div>
+  <span class="material-symbols-outlined boton-subir" style="color: #252627; font-size: 50px;">expand_less</span>
 </div>
-<span class="material-symbols-outlined boton-subir" style="color: #252627; font-size: 50px;">expand_less</span>

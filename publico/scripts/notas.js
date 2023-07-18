@@ -38,7 +38,7 @@ function createNota(colorBorde) { // Agregar el parámetro colorBorde
 
   const texto = document.createElement("p");
   texto.textContent =
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. A rem magnam necessitatibus repellendus officia, non quisquam ipsam similique beatae, labore ut.";
+    "Escribe el texto aquí...";
 
   contenidoNota.appendChild(titulo);
   contenidoNota.appendChild(texto);
@@ -68,11 +68,6 @@ function createNota(colorBorde) { // Agregar el parámetro colorBorde
 
   notasGrid.appendChild(nota);
 }
-
-// Aquí creamos una nota por defecto al cargar la página inicialmente
-createNota(window.getComputedStyle(circulos[1]).getPropertyValue(
-        "background-color"
-      ));
 
 circulos.forEach((circulo, index) => {
   circulo.addEventListener("click", () => {
