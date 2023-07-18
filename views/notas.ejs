@@ -28,12 +28,8 @@
         <% notas.forEach(nota => { %>
           <a href="/edicion-nota/<%= nota._id %>" class="nota">
             <div class="contenido-nota">
-              <h3>
-                <%= nota.titulo || "Título de la nota" %>
-              </h3>
-              <p>
-                <%= nota.cuerpo || "Texto de la nota" %>
-              </p>
+              <h3><%= nota.titulo || "Título de la nota" %></h3>
+              <p><%= nota.cuerpo || "Texto de la nota" %></p>
             </div>
             <div class="flecha">
               <span class="material-icons">arrow_forward</span>

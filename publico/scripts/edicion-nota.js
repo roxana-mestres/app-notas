@@ -1,3 +1,65 @@
+/* EDITAR TEXTO */
+document.addEventListener('DOMContentLoaded', () => {
+  const tituloNota = document.getElementById('titulo-nota');
+  const cuerpoNota = document.getElementById('cuerpo-nota');
+  const editarEnlace = document.getElementById('enlace-editar');
+
+  editarEnlace?.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+    if (tituloNota?.contentEditable === 'true') {
+      // Modo de guardado
+      tituloNota.contentEditable = 'false';
+      cuerpoNota.contentEditable = 'false';
+      toggleEditIcon(event.target); // Pasar el enlace como argumento
+    } else {
+      // Modo de edición
+      tituloNota.contentEditable = 'true';
+      cuerpoNota.contentEditable = 'true';
+      toggleEditIcon(event.target); // Pasar el enlace como argumento
+    }
+  });
+});
+
+/* BOTÓN BORRAR VENTANA */
+
+/* ELIMINAR NOTA */
+const botonBorrarNota = document.getElementById('borrar-nota');
+
+botonBorrarNota.addEventListener('click', () => {
+  confirmarEliminar();
+});
+
+function confirmarEliminar() {
+  const popup = crearPopup();
+  const mensaje = document.createElement('p');
+  mensaje.textContent = '¿Seguro que quieres borrar esta nota?';
+  popup.appendChild(mensaje);
+
+  const botonConfirmar = document.createElement('button');
+  botonConfirmar.textContent = 'Sí';
+  popup.appendChild(botonConfirmar);
+
+  const botonCancelar = document.createElement('button');
+  botonCancelar.textContent = 'Cancelar';
+  popup.appendChild(botonCancelar);
+
+  botonConfirmar.addEventListener('click', () => {
+    // Agrega aquí la lógica para borrar la nota
+    document.body.removeChild(popup);
+  });
+
+  botonCancelar.addEventListener('click', () => {
+    document.body.removeChild(popup);
+  });
+}
+
+function crearPopup() {
+  const popup = document.createElement('div');
+  popup.classList.add('popup');
+  document.body.appendChild(popup);
+  return popup;
+}
+
 /* FECHA */
 const fechaActual = new Date();
 
@@ -35,7 +97,7 @@ const fechaFormateada = `${diaSemana} ${dia} de ${mes} de ${anio}`;
 
 document.getElementById("fecha").textContent = fechaFormateada;
 
-/*CAMBIAR TAMAÑO LETRA*/
+/* CAMBIAR TAMAÑO LETRA */
 
 const tamanosIcons = document.querySelectorAll('.tamano span');
 const textoParagraph = document.querySelector('.texto p');
@@ -73,5 +135,3 @@ function getColorValues(color) {
   }
   return [];
 }
-
-

@@ -1,38 +1,43 @@
 <div class="cabecera">
     <div class="colores">
-        <div class="circulo oculto" style="background-color: #577590;"></div>
-        <div class="circulo oculto" style="background-color: #43AA8B;"></div>
-        <div class="circulo oculto" style="background-color: #90BE6D;"></div>
-        <div class="circulo oculto" style="background-color: #F9C74F;"></div>
-        <div class="circulo oculto" style="background-color: #F8961E"></div>
-        <div class="circulo oculto" style="background-color: #F27E5A"></div>
-        <div class="circulo oculto" style="background-color: #F94144"></div>
+      <div class="circulo oculto" style="background-color: #577590;"></div>
+      <div class="circulo oculto" style="background-color: #43AA8B;"></div>
+      <div class="circulo oculto" style="background-color: #90BE6D;"></div>
+      <div class="circulo oculto" style="background-color: #F9C74F;"></div>
+      <div class="circulo oculto" style="background-color: #F8961E"></div>
+      <div class="circulo oculto" style="background-color: #F27E5A"></div>
+      <div class="circulo oculto" style="background-color: #F94144"></div>
     </div>
     <div class="tamanos">
-        <div class="tamano">
-            <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 30px;">text_increase</span>
-        </div>
-        <div class="tamano">
-            <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 35px;">text_increase</span>
-        </div>
-        <div class="tamano">
-            <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;">text_increase</span>
-        </div> 
+      <div class="tamano">
+        <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 30px;">text_increase</span>
+      </div>
+      <div class="tamano">
+        <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 35px;">text_increase</span>
+      </div>
+      <div class="tamano">
+        <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;">text_increase</span>
+      </div>
     </div>
-</div>
-<div class="contenido">
+  </div>
+  <div class="contenido">
     <div class="titulos">
-        <h1>Título de la nota</h1>
-        <h3 id="fecha">Lunes 23 de julio de 2023</h3>
+      <h1 id="titulo-nota"  contenteditable="true"><%= nota.titulo %></h1>
+      <h3 id="fecha">Lunes 23 de julio de 2023</h3>
     </div>
     <div class="texto">
-        <div class="resaltado">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis porro consequuntur debitis et magni asperiores itaque beatae recusandae doloribus eum mollitia ducimus, ullam excepturi reprehenderit pariatur aliquid, ab labore repudiandae cum? Commodi quibusdam recusandae voluptate itaque quam unde aut natus in aliquam perspiciatis labore, laborum, nisi maiores?</p>
-        </div>
+      <div class="resaltado">
+        <p id="cuerpo-nota"  contenteditable="true"><%= nota.cuerpo %></p>
+      </div>
     </div>
-</div>
-<div class="footer">
-    <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;"><a href="notas">home</a></span>
-    <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;"><a href="#">edit</a></span>
-    <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;"><a href="#"></a>delete</span>
-</div>
+  </div>
+  <div class="footer">
+    <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;"><a href="/notas">home</a></span>
+    <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;">
+      <a href="#" id="enlace-editar">edit</a>
+    </span>
+    <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;">
+      <a href="#" id="enlace-editar">save</a>
+    </span>    
+    <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;"><a href="#" id="borrar-nota">delete</a></span>
+  </div>

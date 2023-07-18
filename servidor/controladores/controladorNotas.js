@@ -56,19 +56,34 @@ exports.notas = async (peticion, respuesta) => {
 // Ver nota
 
 exports.verNota = async (peticion, respuesta) => {
-  const nota = await Nota.findById({ _id: peticion.params.id })
-  .where({ usuario: peticion.user.id }).lean();
+  try {
+    console.log("ID de la nota:", peticion.params.id);
+    console.log("ID del usuario:", peticion.user.id);
 
-  if(nota) {
-    respuesta.render("layouts/pag-edicion-nota"), {
+    const nota = await Nota.findById({ _id: peticion.params.id }).where({
+      usuario: peticion.user.id
+    }).lean();
+
+    if (nota) {
+      console.log("Nota encontrada:", nota);
+
+      respuesta.render("edicion-nota", {
         notaId: peticion.params.id,
         nota,
         layout: "layouts/pag-edicion-nota"
-    };
-  }else {
-    respuesta.send("Ocurrió un error")
+      });
+    } else {
+      console.log("La nota no existe.");
+
+      respuesta.send("La nota no existe.");
+    }
+  } catch (error) {
+    console.log("Error:", error);
+
+    respuesta.status(500).send("Error interno del servidor");
   }
 };
+
 
 // Actualizar nota
 exports.actualizarNota = async (peticion, respuesta) => {

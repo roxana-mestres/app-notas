@@ -62,17 +62,41 @@
     border-radius: 15px;
   }
 
+  /* Estilos de la ventana emergente */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: #F4E5E0;
+  border: 3px solid black;
+  padding: 20px;
+}
+
+/* Estilos de los botones */
+.popup button {
+  margin-right: 10px;
+}
+
+input.editable {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
 /*FOOTER*/
 
 .footer {
-    width: 100%;
-    height: auto;
-    background-color: #252627;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15% 10px 15%;
-    margin-bottom: 0;
-    position: sticky;
+  width: 100%;
+  height: auto;
+  background-color: #252627;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15% 10px 15%;
+  margin-top: auto;
+  position: fixed;
+  bottom: 0;
 }
 
 
