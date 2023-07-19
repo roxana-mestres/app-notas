@@ -79,12 +79,25 @@
   margin-right: 10px;
 }
 
-input.editable {
+ /* Estilo para los inputs transparentes */
+ .transparent-input {
   border: none;
-  background-color: transparent;
   outline: none;
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  resize: vertical;
 }
 
+#titulo-nota {
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: clamp(4rem, 8vw, 8rem);
+  transition: font-size 0.3s;
+  color: #252627;
+  margin-bottom: 1rem;
+}
 /*FOOTER*/
 
 .footer {
@@ -99,10 +112,9 @@ input.editable {
   bottom: 0;
 }
 
-
-
-
-
+.material-symbols-outlined {
+  font-size: 40px;
+}
 
 /*RESPONSIVE*/
 

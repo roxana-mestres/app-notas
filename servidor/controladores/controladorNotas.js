@@ -1,5 +1,7 @@
+// controladorNotas.js
 const Nota = require("../models/Notas");
 const mongoose = require("mongoose");
+const passport = require("passport");
 
 // Página inicial
 exports.notas = async (peticion, respuesta) => {
@@ -51,10 +53,9 @@ exports.notas = async (peticion, respuesta) => {
   }
 };
 
-// Página edicion-nota 
+// Página edicion-nota
 
 // Ver nota
-
 exports.verNota = async (peticion, respuesta) => {
   try {
     console.log("ID de la nota:", peticion.params.id);
@@ -84,10 +85,44 @@ exports.verNota = async (peticion, respuesta) => {
   }
 };
 
-
 // Actualizar nota
 exports.actualizarNota = async (peticion, respuesta) => {
-  
+  try {
+    if (peticion.isAuthenticated()) {
+      const notaId = peticion.params.id;
+      const usuarioId = peticion.user.id;
+      const titulo = peticion.body.titulo;
+      const cuerpo = peticion.body.cuerpo;
+
+      console.log("Datos recibidos:");
+      console.log("notaId:", notaId);
+      console.log("usuarioId:", usuarioId);
+      console.log("titulo:", titulo);
+      console.log("cuerpo:", cuerpo);
+
+      await Nota.findOneAndUpdate(
+        { _id: notaId },
+        { titulo, cuerpo }
+      ).where({ usuario: usuarioId });
+
+      respuesta.redirect("/notas");
+    } else {
+      // El usuario no está autenticado, manejar según sea necesario
+      respuesta.status(401).send("Usuario no autenticado");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Borrar nota
+exports.borrarNota = async (peticion, respuesta) => {
+  try {
+    await Nota.findByIdAndRemove(peticion.params.id);
+    respuesta.redirect("/notas");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // Página cerrar sesión

@@ -2,12 +2,14 @@ require("dotenv").config();
 
 const express = require("express");
 const path = require("path");
+const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const layouts = require("express-ejs-layouts");
 const conectarBD = require("./servidor/config/db");
 const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require("connect-mongo");
+const bodyParser = require('body-parser');
 
 const app = express();
 const puerto = process.env.PORT || 5000;
@@ -24,9 +26,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "publico")));
+app.use(methodOverride("_method"));
 
 // Conectar a la base de datos
 conectarBD();
@@ -46,7 +49,7 @@ app.use("/css", express.static(path.join(__dirname, "publico", "css")));
 // Rutas generales
 app.use("/", require(path.join(__dirname, "servidor", "rutas", "auth")));
 app.use("/", require(path.join(__dirname, "servidor", "rutas", "index")));
-app.use("/", require(path.join(__dirname, "servidor", "rutas", "notas")));
+
 
 // Ruta 404
 app.use((peticion, respuesta) => {

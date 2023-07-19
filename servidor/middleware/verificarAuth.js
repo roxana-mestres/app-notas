@@ -1,9 +1,11 @@
 const passport = require("passport");
 exports.conectado = function (peticion, respuesta, siguiente) {
-    if (peticion.isAuthenticated()) {
-      siguiente();
-    } else {
-      return respuesta.status(401).render("pag-401");
-    }
-  };
-  
+  console.log("Verifying user authentication...");
+  if (peticion.isAuthenticated()) {
+    console.log("User is authenticated.");
+    siguiente();
+  } else {
+    console.log("User is not authenticated.");
+    return respuesta.status(401).render("pag-401");
+  }
+};

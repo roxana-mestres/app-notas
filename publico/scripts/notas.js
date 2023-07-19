@@ -56,11 +56,6 @@ function createNota(colorBorde) { // Agregar el parámetro colorBorde
 
   iconoFlecha.style.color = colorBorde; // Agregar esta línea para ajustar el color del icono de la flecha
 
-  // Agregar este evento para que al hacer clic en la flecha se enlace a "edicion-nota"
-  flecha.addEventListener("click", () => {
-    window.location.href = "edicion-nota";
-  });
-
   flecha.appendChild(iconoFlecha);
 
   nota.appendChild(contenidoNota);
