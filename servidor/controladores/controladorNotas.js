@@ -53,6 +53,34 @@ exports.notas = async (peticion, respuesta) => {
   }
 };
 
+// Crear nota
+
+exports.agregarNotas = async (peticion, respuesta) => {
+  try {
+    if (peticion.isAuthenticated()) {
+      const usuario = peticion.user;
+      const primerNombre = usuario.displayName.split(" ")[0];
+
+      const nuevaNota = {
+        titulo: "Título de la nueva nota",
+        cuerpo: "Contenido de la nueva nota",
+        usuario: usuario.id
+      };
+
+      const notaCreada = await Nota.create(nuevaNota);
+
+      respuesta.json({ message: "Nota creada exitosamente" });
+    } else {
+      console.log("Usuario no autenticado");
+      respuesta.status(401).json({ error: "Usuario no autenticado" });
+    }
+  } catch (error) {
+    console.log("Error:", error);
+    respuesta.status(500).json({ error: "Error interno del servidor" });
+  }
+};
+
+
 // Página edicion-nota
 
 // Ver nota

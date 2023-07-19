@@ -81,3 +81,25 @@ function getColorValues(color) {
   }
   return [];
 }
+
+// Círculos
+
+/*circulos.forEach((circulo, index) => {
+  circulo.addEventListener("click", () => {
+    if (index !== 0) {
+      const colorBorde = window.getComputedStyle(circulos[index]).getPropertyValue(
+        "background-color"
+      );
+      createNota(colorBorde);
+      agregarNotas(colorBorde); // Llamar a la función agregarNotas con el colorBorde
+    }
+    if (index === 0) {
+      if (desplegado) {
+        animateOut();
+      } else {
+        animateIn();
+      }
+      desplegado = !desplegado;
+    }
+  });
+});*/

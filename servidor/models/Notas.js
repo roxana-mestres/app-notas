@@ -18,10 +18,6 @@ const schemaNotas = new Schema({
   creado: {
     type: Date,
     default: Date.now
-  },
-  color: {
-    type: String,
-    required: true
   }
 });
 

@@ -18,7 +18,8 @@ async function (accessToken, refreshToken, profile, done) {
     displayName: profile.displayName,
     firstName: profile.name.givenName,
     lastName: profile.name.familyName,
-    profileImage: profile.photos[0].value
+    profileImage: profile.photos[0].value,
+    email: profile.emails[0].value 
   }
   
   try {

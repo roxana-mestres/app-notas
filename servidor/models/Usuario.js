@@ -28,7 +28,7 @@ const schemaUsuario = new Schema({
   }
 });
 
-schemaUsuario.pre("save", function (next) {
+schemaUsuario.pre("save", function (siguiente) {
   console.log("Guardando usuario:");
   console.log("googleId:", this.googleId);
   console.log("displayName:", this.displayName);
@@ -36,7 +36,7 @@ schemaUsuario.pre("save", function (next) {
   console.log("lastName:", this.lastName);
   console.log("profileImage:", this.profileImage);
 
-  next();
+  siguiente();
 });
 
 module.exports = mongoose.model("Usuario", schemaUsuario);

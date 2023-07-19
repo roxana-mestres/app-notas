@@ -7,6 +7,7 @@ const { conectado } = require("../middleware/verificarAuth");
 // Rutas app
 router.get("/", controladorPrincipal.paginaInicial);
 router.get("/notas", conectado, controladorNotas.notas);
+router.post("/notas", conectado, controladorNotas.agregarNotas);
 router.get("/edicion-nota/:id", conectado, controladorNotas.verNota);
 router.delete("/edicion-nota/:id", conectado, controladorNotas.borrarNota);
 router.put("/edicion-nota/:id", conectado, controladorNotas.actualizarNota);

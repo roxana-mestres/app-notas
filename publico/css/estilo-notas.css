@@ -79,14 +79,18 @@
   justify-content: flex-start; /* Centrar horizontalmente */
   align-items: center; /* Centrar verticalmente */
 }
-
 .notas-grid {
+  margin-top: 20px;
+  grid-row: 1 / span 3;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 20px;
   margin-bottom: 100px;
 }
-
+a.nota{
+  max-height: 150px;
+  margin-bottom: 0;
+}
 .nota {
   height: auto;
   padding: 10px;
@@ -117,8 +121,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+ 
 }
 
 h3 {
@@ -129,47 +132,19 @@ h3 {
   position: absolute;
   bottom: 10px;
   right: 10px;
+  color: #F27E5A; 
 }
-
-.circulo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  background-color: #252627;
-  color: #F4E5E0;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.circulo.oculto {
-  display: none;
-}
-
-.circulo.mostrar {
-  opacity: 1;
-  transform: translateY(0%);
-}
-
-.material-icons {
-  font-size: 24px;
-  color: #F27E5A;
-}
-.boton-subir{
+.boton-subir {
   position: fixed;
   right: 32px;
   bottom: 32px;
   display: flex;
   transition: all .4s;
 }
-.boton-subir.enlace_activo{
+
+.boton-subir.enlace_activo {
   pointer-events: auto;
   opacity: 1;
-}
-html {
-  scroll-behavior: smooth;
 }
 
 /*RESPONSIVE*/
@@ -195,14 +170,23 @@ html {
   width: 35px;
   height: 35px;
  }
+ .boton-subir {
+  top: unset;
+  bottom: 32px;
+}
+}
 
  
- .notas-grid {
+.notas-grid {
   align-self: flex-start; /* Agregamos esta línea */
-  margin-top: 20px; 
- }
+  margin-top: 20px;
+  grid-row: 1 / span 3; /* Hace que la rejilla ocupe las tres filas */
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(350px, 1fr)); /* Cambia a grid-template-rows */
+  gap: 20px;
+  margin-bottom: 100px;
+}
 
  div.titulo-avatar-buscador{
   min-height: 100px;
  }
-}
