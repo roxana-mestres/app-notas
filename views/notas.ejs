@@ -1,36 +1,44 @@
 <div class="titulo-logo-buscador">
   <div class="titulo-logo">
-    <h1>¡ Hola, <br/> <%= nombre %> !</h1>
+    <h1>Hola, <br />
+      <%= nombre %>
+    </h1>
     <div class="logo"></div>
   </div>
   <form action="/buscar" role="search" method="POST">
-  <div class="buscador">
-    <input type="search" name="terminosBusqueda" placeholder="Buscar...">
-    <span class="material-symbols-outlined">search</span>
-  </div>
-</form>
-  <span class="material-symbols-outlined" style="color: #252627; font-size: 50px;"><a href="cerrar-sesion">logout</a></span>
+    <div class="buscador">
+      <input type="search" name="terminosBusqueda" placeholder="Buscar...">
+      <span class="material-symbols-outlined" style="color: #F4E5E0;">search</span>
+    </div>
+  </form>
+  <span class="material-symbols-outlined" style="color: #252627; font-size: 50px;"><a
+      href="cerrar-sesion">logout</a></span>
 </div>
 
 <div class="contenido">
   <div class="nueva-nota">
-    <div id="circulo-mas" class="circulo" style="background-color: #252627; color: #F4E5E0;" onclick="agregarNotas()">+</div>
+    <div id="circulo-mas" class="circulo" style="background-color: #252627; color: #F4E5E0;" onclick="agregarNotas()">+
+    </div>
   </div>
   <div class="centrar-grid">
-    <div class="notas-container">
-      <% if(notas.length > 0) { %>
-        <% notas.forEach(nota => { %>
+    <div class="notas-contenedor">
+      <% if(notas.length> 0) { %>
+        <% notas.forEach(nota=> { %>
           <a href="/edicion-nota/<%= nota._id %>" class="nota">
-            <div class="contenido-nota" >
-              <h3><%= nota.titulo || "Título de la nota" %></h3>
-              <p><%= nota.cuerpo || "Texto de la nota" %></p>
+            <div class="contenido-nota">
+              <h3>
+                <%= nota.titulo || "Título de la nota" %>
+              </h3>
+              <p>
+                <%= nota.cuerpo || "Texto de la nota" %>
+              </p>
             </div>
             <div class="flecha">
               <span class="material-icons">arrow_forward</span>
             </div>
           </a>
-        <% }); %>
-      <% } %>
+          <% }); %>
+            <% } %>
     </div>
   </div>
   <span class="material-symbols-outlined boton-subir" style="color: #252627; font-size: 50px;">expand_less</span>

@@ -23,7 +23,7 @@ exports.notas = async (peticion, respuesta) => {
           $project: {
             titulo: { $substr: ["$titulo", 0, 30] },
             cuerpo: { $substr: ["$cuerpo", 0, 150] },
-            _id: 1 // Agregar el campo "_id" al resultado de la agregación
+            _id: 1
           }
         },
         {
@@ -42,14 +42,12 @@ exports.notas = async (peticion, respuesta) => {
         layout: "layouts/pag-notas"
       });
     } else {
-      // Manejar el caso cuando el usuario no está autenticado
       console.log("Usuario no autenticado");
-      respuesta.redirect("/"); // Redirigir a la página de inicio de sesión o manejar según sea necesario
+      respuesta.redirect("/");
     }
   } catch (error) {
     console.log("Error:", error);
-    // Manejar el error
-    respuesta.status(500).send("Error interno del servidor"); // Enviar una respuesta de error apropiada
+    respuesta.status(500).send("Error interno del servidor");
   }
 };
 
@@ -59,16 +57,15 @@ exports.agregarNotas = async (peticion, respuesta) => {
   try {
     if (peticion.isAuthenticated()) {
       const usuario = peticion.user;
-      const primerNombre = usuario.displayName.split(" ")[0];
 
       const nuevaNota = {
         titulo: "Título de la nueva nota",
         cuerpo: "Contenido de la nueva nota",
         usuario: usuario.id,
-        creado: new Date() // Establecer la fecha de creación actual
+        creado: new Date()
       };
 
-      const notaCreada = await Nota.create(nuevaNota);
+      await Nota.create(nuevaNota);
 
       respuesta.json({ message: "Nota creada exitosamente" });
     } else {
@@ -135,7 +132,6 @@ exports.actualizarNota = async (peticion, respuesta) => {
 
       respuesta.redirect("/notas");
     } else {
-      // El usuario no está autenticado, manejar según sea necesario
       respuesta.status(401).send("Usuario no autenticado");
     }
   } catch (error) {
@@ -155,13 +151,13 @@ exports.borrarNota = async (peticion, respuesta) => {
 
 // Búsqueda
 
-exports.notasBusqueda = async(peticion, respuesta) => {
-  try{
-    respuesta.render("notas/buscar",{
+exports.notasBusqueda = async (peticion, respuesta) => {
+  try {
+    respuesta.render("notas/buscar", {
       resultadosBusqueda: "",
       layout: "layouts/pag-notas"
     })
-  }catch(error){
+  } catch (error) {
     console.log(error);
   }
 }
@@ -169,35 +165,20 @@ exports.notasBusqueda = async(peticion, respuesta) => {
 exports.notasBuscar = async (peticion, respuesta) => {
   try {
     let terminosBusqueda = peticion.body.terminosBusqueda;
-    const sinCaracEspeciales = terminosBusqueda.replace(/[^\w\s]/gi, '').toLowerCase(); // Convertir a minúsculas
+    const sinCaracEspeciales = terminosBusqueda.replace(/[^\w\s]/gi, '').toLowerCase();
 
     const resultadosBusqueda = await Nota.find({
       $or: [
-        { titulo: { $regex: new RegExp(sinCaracEspeciales, "i") }},
-        { cuerpo: { $regex: new RegExp(sinCaracEspeciales, "i") }}
+        { titulo: { $regex: new RegExp(sinCaracEspeciales, "i") } },
+        { cuerpo: { $regex: new RegExp(sinCaracEspeciales, "i") } }
       ]
-    }).where( {usuario: peticion.user.id });
+    }).where({ usuario: peticion.user.id });
 
     respuesta.render("buscar", {
       resultadosBusqueda,
       layout: "layouts/pag-buscar"
     });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 }
-
-
-// Página cerrar sesión
-exports.cerrarSesion = (peticion, respuesta) => {
-  const locals = {
-    titulo: "Cerrar sesión"
-  };
-
-  peticion.logout(); // Utilizar el método apropiado para cerrar sesión del usuario
-
-  respuesta.render("/", {
-    locals,
-    layout: "layouts/principal"
-  });
-};

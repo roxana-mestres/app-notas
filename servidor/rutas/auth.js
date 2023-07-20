@@ -9,34 +9,34 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: process.env.CALLBACK_URL
 },
-async function (accessToken, refreshToken, profile, done) {
-  console.log("Google authentication callback received");
-  console.log("Profile:", profile);
-  
-  const nuevoUsuario = {
-    googleId: profile.id,
-    displayName: profile.displayName,
-    firstName: profile.name.givenName,
-    lastName: profile.name.familyName,
-    profileImage: profile.photos[0].value,
-    email: profile.emails[0].value 
-  }
-  
-  try {
-    let usuario = await Usuario.findOne({ googleId: profile.id });
-    if (usuario) {
-      console.log("Existing user found");
-      done(null, usuario);
-    } else {
-      console.log("New user created");
-      usuario = await Usuario.create(nuevoUsuario);
-      done(null, usuario);
+  async function (accessToken, refreshToken, profile, done) {
+    console.log("Google authentication callback received");
+    console.log("Profile:", profile);
+
+    const nuevoUsuario = {
+      googleId: profile.id,
+      displayName: profile.displayName,
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
+      profileImage: profile.photos[0].value,
+      email: profile.emails[0].value
     }
-  } catch (error) {
-    console.log("Error during authentication:", error);
-    done(error, null);
-  }
-}));
+
+    try {
+      let usuario = await Usuario.findOne({ googleId: profile.id });
+      if (usuario) {
+        console.log("Usuario existente encontrado");
+        done(null, usuario);
+      } else {
+        console.log("Nuevo usuario creado");
+        usuario = await Usuario.create(nuevoUsuario);
+        done(null, usuario);
+      }
+    } catch (error) {
+      console.log("Error durante la autenticación:", error);
+      done(error, null);
+    }
+  }));
 
 // Ruta para iniciar sesión con Google
 router.get('/auth/google',
@@ -52,14 +52,14 @@ router.get('/google/callback',
 
 // Cerrar sesión
 router.get("/cerrar-sesion", (peticion, respuesta) => {
-  console.log("Logging out the user");
-  
+  console.log("Cerrando sesión del usuario");
+
   peticion.session.destroy(error => {
     if (error) {
-      console.log("Error while destroying session:", error);
+      console.log("Error al destruir sesión:", error);
       respuesta.send("Error al cerrar sesión");
     } else {
-      console.log("Session destroyed successfully");
+      console.log("Se destruyó la sesión correctamente");
       respuesta.redirect("/");
     }
   });
@@ -74,7 +74,7 @@ passport.serializeUser(function (usuario, done) {
 // Obtener información usuario de la sesión
 passport.deserializeUser(async (id, done) => {
   console.log("Deserializing user with ID:", id);
-  
+
   try {
     const usuario = await Usuario.findById(id);
     console.log("Deserialized user:", usuario);

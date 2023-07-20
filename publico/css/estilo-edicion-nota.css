@@ -1,90 +1,35 @@
-.cabecera {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .colores,
-  .tamanos {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .circulo,
-  .tamano {
-    margin-right: 10px;
-  }
+.contenido {
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .circulo.oculto {
-    display: none;
-  }
-  
-  .tamano {
-    padding: 2px 5px;
-    background-color: #252627;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .tamano span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+h3 {
+  margin: 0 0 50px 30px;
+}
 
-  .contenido {
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  h3 {
-    margin: 0 0 50px 30px;
-  }
-
-  .texto {
-    width: 100%;
-    height: auto;
-    padding: 20px;
-    border-left: 3px solid #252627;
-    align-self: center;
+.texto {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  border-left: 3px solid #252627;
+  align-self: center;
 }
 
 .texto p {
-    text-align: justify;
+  text-align: justify;
 }
 
 .resaltado {
-    width: 100%;
-    height: auto;
-    padding: 50px;
-    background-color: #f27e5ab3;
-    border-radius: 15px;
-  }
-
-  /* Estilos de la ventana emergente */
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  background-color: #F4E5E0;
-  border: 3px solid black;
-  padding: 20px;
+  width: 100%;
+  height: auto;
+  padding: 50px;
+  background-color: #f27e5ab3;
+  border-radius: 15px;
 }
 
-/* Estilos de los botones */
-.popup button {
-  margin-right: 10px;
-}
-
- /* Estilo para los inputs transparentes */
- .transparent-input {
+/* Estilo para los inputs transparentes */
+.transparent-input {
   border: none;
   outline: none;
   background-color: transparent;
@@ -102,6 +47,7 @@
   color: #252627;
   margin-bottom: 1rem;
 }
+
 /*FOOTER*/
 
 .footer {
@@ -137,36 +83,30 @@
   color: #F4E5E0;
   text-decoration: none;
 }
+
 /*RESPONSIVE*/
 
 @media only screen and (min-width: 320px) and (max-width: 675px) {
-  div.cabecera{
-    flex-direction: column;
-    align-items: center;
-  }
-  div.circulo{
-    width: 35px;
-    height: 35px;
-  }
-  div.colores{
-    margin-bottom: 15px;
-  }
-  div.titulos h3{
+
+  div.titulos h3 {
     font-size: 20px;
     margin-bottom: 15px;
   }
-  div.titulos h1{
-    margin-top: 20px;
-    font-size: 40px;
+
+  div.titulos{
+    text-align: left;
   }
-  div.contenido{
+
+  div.contenido {
     text-align: center;
     margin: 50px 20px;
   }
-  div.resaltado{
+
+  div.resaltado {
     padding: 15px;
   }
-  div.resaltado p{
+
+  div.resaltado p {
     text-align: left;
     font-size: 16px;
     line-height: 25px;

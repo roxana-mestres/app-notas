@@ -1,16 +1,13 @@
 const notasGrid = document.querySelector(".notas-grid");
 
 function crearNota() {
-  const colorDefault = "#F27E5A";
-
-
+ 
   const nota = document.createElement("div");
   nota.classList.add("nota");
-  nota.dataset.color = color; // Agregar el color como atributo de datos
 
   const contenidoNota = document.createElement("div");
   contenidoNota.classList.add("contenido-nota");
-  contenidoNota.style.backgroundColor = colorDefault;
+  contenidoNota.style.backgroundColor = "#F27E5A";
 
   const titulo = document.createElement("h3");
   titulo.textContent = "Título de la nota";
@@ -50,7 +47,6 @@ function agregarNotas() {
     .then(response => response.json())
     .then(data => {
       console.log("Nota creada:", data);
-      window.location.href = "/notas";
     })
     .catch(error => {
       console.log("Error al crear la nota:", error);

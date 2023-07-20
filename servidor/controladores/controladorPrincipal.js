@@ -1,4 +1,3 @@
-const path = require("path");
 //Página inicial
 exports.paginaInicial = async (peticion, respuesta) => {
     const locals = {
@@ -6,30 +5,6 @@ exports.paginaInicial = async (peticion, respuesta) => {
     }
 
     respuesta.render("index", locals);
-};
-
-//Página crear-cuenta
-exports.crearCuenta = async (peticion, respuesta) => {
-    const locals = {
-        titulo: "App de notas: crear cuenta"
-    }
-
-    respuesta.render("crear-cuenta", {
-        locals,
-        layout: "../views/layouts/pag-crear-cuenta"
-    });
-};
-
-//Página iniciar-sesion
-exports.iniciarSesion = async (peticion, respuesta) => {
-    const locals = {
-        titulo: "App de notas: inicio de sesión"
-    }
-
-    respuesta.render("iniciar-sesion", {
-        locals,
-        layout: "../views/layouts/pag-iniciar-sesion"
-    });
 };
 
 //Página 404

@@ -9,7 +9,6 @@ const conectarBD = require("./servidor/config/db");
 const session = require("express-session");
 const passport = require("passport");
 const MongoStore = require("connect-mongo");
-const bodyParser = require('body-parser');
 
 const app = express();
 const puerto = process.env.PORT || 5000;
@@ -26,8 +25,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "publico")));
 app.use(methodOverride("_method"));
 

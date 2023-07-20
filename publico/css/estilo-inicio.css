@@ -1,5 +1,4 @@
 body.index {
-  /* Tu código actual permanece igual */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +12,6 @@ body.index {
   background-attachment: fixed;
 }
 
-/* Estilo para el contenedor que centra su contenido */
 .contenedor {
   text-align: center;
   flex: 1;
@@ -23,7 +21,6 @@ body.index {
   align-items: center;
 }
 
-/* Estilo para centrar el contenido dentro del contenedor */
 .contenido-centrado {
   display: flex;
   flex-direction: column;
@@ -32,13 +29,11 @@ body.index {
   height: 100%;
 }
 
-/* Estilo para el botón */
 button.boton.rojo {
   background-color: #FF3131;
   font-size: 40px;
 }
 
-/* Estilo para ocultar elementos si es necesario */
 .oculto {
   display: none;
 }
