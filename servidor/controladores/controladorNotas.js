@@ -80,7 +80,6 @@ exports.agregarNotas = async (peticion, respuesta) => {
   }
 };
 
-
 // Página edicion-nota
 
 // Ver nota
@@ -152,6 +151,41 @@ exports.borrarNota = async (peticion, respuesta) => {
     console.log(error);
   }
 };
+
+// Búsqueda
+
+exports.notasBusqueda = async(peticion, respuesta) => {
+  try{
+    respuesta.render("notas/buscar",{
+      resultadosBusqueda: "",
+      layout: "layouts/pag-notas"
+    })
+  }catch(error){
+    console.log(error);
+  }
+}
+
+exports.notasBuscar = async(peticion, respuesta) => {
+  try{
+    let terminosBusqueda = peticion.body.terminosBusqueda;
+    const sinCaracEspeciales = terminosBusqueda.replace(/[^\w\s]/gi, '');
+
+    const resultadosBusqueda = await Nota.find({
+      $or: [
+        { titulo: { $regex: new RegExp(sinCaracEspeciales, "i") }},
+        { cuerpo: { $regex: new RegExp(sinCaracEspeciales, "i") }}
+      ]
+    }).where( {usuario: peticion.user.id });
+
+    respuesta.render("buscar", {
+      resultadosBusqueda,
+      layout: "layouts/pag-buscar"
+    })
+
+  }catch(error){
+    console.log(error);
+  }
+}
 
 // Página cerrar sesión
 exports.cerrarSesion = (peticion, respuesta) => {

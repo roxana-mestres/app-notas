@@ -14,5 +14,7 @@ router.put("/edicion-nota/:id", conectado, controladorNotas.actualizarNota);
 router.get("/pag-404", controladorPrincipal.pag404);
 router.get("/pag-401", controladorPrincipal.pag401);
 router.get("/cerrar-sesion", controladorNotas.cerrarSesion);
+router.get("/buscar", conectado, controladorNotas.notasBusqueda);
+router.post("/buscar", conectado, controladorNotas.notasBuscar);
 
 module.exports = router;

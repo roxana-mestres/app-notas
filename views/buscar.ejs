@@ -1,0 +1,21 @@
+<div class="barra-negra"></div>
+<div class="contenedor">
+    <div class="contenido-centrado">
+        <h1>Notas:</h1>
+        <div class="resultado">
+            <% if(resultadosBusqueda !="" ) { %>
+                <% resultadosBusqueda.forEach(function (nota, index) { %>
+                    <a href="/edicion-nota/<%= nota._id %>">
+                        <h3>
+                            <%= nota.titulo %>
+                        </h3>
+                    </a>
+                    <% }) %>
+                        <% } else {%>
+                            <p>No se ha encontrado ninguna nota</p>
+                        <% } %>
+        </div>
+        <button class="boton"><a href="/notas">Volver a notas</a></button>
+    </div>
+</div>
+<div class="barra-negra"></div>

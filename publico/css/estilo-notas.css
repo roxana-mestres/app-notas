@@ -37,7 +37,6 @@
   padding: 5px;
   border-radius: 20px;
   max-height: 40px;
-  width: 50%;
 }
 
 .buscador input {
@@ -46,6 +45,10 @@
   color: #F4E5E0;
   margin-right: 10px;
   width: 100%;
+}
+
+form{
+  width: 50%;
 }
 
 .material-symbols-outlined {

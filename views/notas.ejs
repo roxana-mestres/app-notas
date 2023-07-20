@@ -3,10 +3,12 @@
     <h1>¡ Hola, <br/> <%= nombre %> !</h1>
     <div class="logo"></div>
   </div>
+  <form action="/buscar" role="search" method="POST">
   <div class="buscador">
-    <input type="text" placeholder="Buscar...">
+    <input type="search" name="terminosBusqueda" placeholder="Buscar...">
     <span class="material-symbols-outlined">search</span>
   </div>
+</form>
   <span class="material-symbols-outlined" style="color: #252627; font-size: 50px;"><a href="cerrar-sesion">logout</a></span>
 </div>
 
