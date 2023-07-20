@@ -1,5 +1,5 @@
 /* Estilos del encabezado */
-.titulo-avatar-buscador {
+.titulo-logo-buscador {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,27 +8,26 @@
   background-color: #F4E5E0;
 }
 
-.titulo-avatar {
+.titulo-logo {
   display: flex;
   align-items: center;
 }
 
-.titulo-avatar h1 {
+.titulo-logo h1 {
   font-size: 2em;
   margin-right: 10px;
 }
 
-.titulo-avatar h1 span {
+.titulo-logo h1 span {
   margin-right: 5px;
 }
 
-.avatar {
+.logo {
   width: 100px;
   height: 100px;
-  background-image: url(../img/avatar_uno.svg);
+  background-image: url(../img/logo.svg);
   background-size: cover;
   background-position: center;
-  margin-top: -10px;
 }
 
 .buscador {
@@ -57,42 +56,38 @@
 
 /* Estilos del contenido y las notas */
 .contenido {
-  width: calc(100vw - 60px);
   height: 100vh;
+  margin: 20px;
   display: flex;
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: flex-start;
-  margin: 10px;
 }
-
+.centrar-grid{
+  width: 100%;
+  
+}
 .nueva-nota {
   min-width: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 20px; /* Espacio entre .nueva-nota y .centrar-grid */
+  margin-right: 20px;
 }
 
-.centrar-grid {
-  flex: 1; 
-  display: flex;
-  justify-content: flex-start; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
-}
 .notas-grid {
-  margin-top: 20px;
-  grid-row: 1 / span 3;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 20px;
   margin-bottom: 100px;
+  grid-auto-flow: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
-a.nota{
-  max-height: 150px;
-  margin-bottom: 0;
+
+.notas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-auto-flow: dense;
+  gap: 20px;
+  margin-bottom: -20px;
 }
-.nota {
-  height: auto;
+
+a.nota {
+  height: 150px;
   padding: 10px;
   border-radius: 15px;
   position: relative;
@@ -108,32 +103,12 @@ a.nota{
 .nota:active {
   transform: scale(0.95);
 }
+
 .nota p {
   margin-bottom: 0.4em;
 }
 
-.nota .contenido-nota {
-  margin-bottom: 30px;
-}
-
-.nota .contenido-nota p {
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
- 
-}
-
-h3 {
-  margin-bottom: 15px;
-}
-
-.flecha {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  color: #F27E5A; 
-}
+/* Estilo para el botón "Subir" */
 .boton-subir {
   position: fixed;
   right: 32px;
@@ -147,10 +122,17 @@ h3 {
   opacity: 1;
 }
 
+.flecha {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #F27E5A;
+}
+
 /*RESPONSIVE*/
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  div.avatar{
+  div.logo{
     display:none;
   }
   div.buscador{
@@ -178,15 +160,15 @@ h3 {
 
  
 .notas-grid {
-  align-self: flex-start; /* Agregamos esta línea */
+  align-self: flex-start;
   margin-top: 20px;
-  grid-row: 1 / span 3; /* Hace que la rejilla ocupe las tres filas */
+  grid-row: 1 / span 3;
   display: grid;
-  grid-template-rows: repeat(auto-fill, minmax(350px, 1fr)); /* Cambia a grid-template-rows */
+  grid-template-rows: repeat(auto-fill, minmax(350px, 1fr));
   gap: 20px;
   margin-bottom: 100px;
 }
 
- div.titulo-avatar-buscador{
+ div.titulo-logo-buscador{
   min-height: 100px;
  }

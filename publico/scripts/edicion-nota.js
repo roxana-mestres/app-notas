@@ -45,11 +45,11 @@ document.getElementById("fecha").textContent = fechaFormateada;
 
 /* CAMBIAR TAMAÑO LETRA */
 
-const tamanosIcons = document.querySelectorAll('.tamano span');
-const textoParagraph = document.querySelector('.texto p');
+const tamanosIconos = document.querySelectorAll(".tamano span");
+const textoArea = document.getElementById("cuerpo-nota");
 
-tamanosIcons.forEach((icon, index) => {
-  icon.addEventListener('click', () => {
+tamanosIconos.forEach((icono, index) => {
+  icono.addEventListener('click', () => {
     let fontSize;
     if (index === 0) {
       fontSize = '18px';
@@ -58,7 +58,7 @@ tamanosIcons.forEach((icon, index) => {
     } else if (index === 2) {
       fontSize = '26px';
     }
-    textoParagraph.style.fontSize = fontSize;
+    textoArea.style.fontSize = fontSize;
   });
 });
 
@@ -84,22 +84,19 @@ function getColorValues(color) {
 
 // Círculos
 
-/*circulos.forEach((circulo, index) => {
-  circulo.addEventListener("click", () => {
-    if (index !== 0) {
-      const colorBorde = window.getComputedStyle(circulos[index]).getPropertyValue(
-        "background-color"
-      );
-      createNota(colorBorde);
-      agregarNotas(colorBorde); // Llamar a la función agregarNotas con el colorBorde
+// Círculos
+
+function desplegarCirculos() {
+  const circulos = document.querySelectorAll(".circulo");
+  let i = 0;
+
+  const intervalo = setInterval(() => {
+    circulos[i].classList.remove("oculto");
+    i++;
+    if (i >= circulos.length) {
+      clearInterval(intervalo);
     }
-    if (index === 0) {
-      if (desplegado) {
-        animateOut();
-      } else {
-        animateIn();
-      }
-      desplegado = !desplegado;
-    }
-  });
-});*/
+  }, 100);
+}
+
+window.addEventListener("load", desplegarCirculos);

@@ -17,6 +17,10 @@
   .tamano {
     margin-right: 10px;
   }
+
+  .circulo.oculto {
+    display: none;
+  }
   
   .tamano {
     padding: 2px 5px;
@@ -112,10 +116,27 @@
   bottom: 0;
 }
 
-.material-symbols-outlined {
-  font-size: 40px;
+/* Estilos para el contenedor de íconos del footer */
+.footer-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 5%;
 }
 
+/* Estilo para los íconos del footer */
+.footer-icons span,
+.footer-icons button {
+  font-size: 40px;
+  color: #F4E5E0;
+}
+
+/* Estilo para el enlace del ícono "home" */
+.footer-icons a {
+  color: #F4E5E0;
+  text-decoration: none;
+}
 /*RESPONSIVE*/
 
 @media only screen and (min-width: 320px) and (max-width: 675px) {

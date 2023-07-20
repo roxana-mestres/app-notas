@@ -1,7 +1,7 @@
-<div class="titulo-avatar-buscador">
-  <div class="titulo-avatar">
+<div class="titulo-logo-buscador">
+  <div class="titulo-logo">
     <h1>¡ Hola, <br/> <%= nombre %> !</h1>
-    <div class="avatar"></div>
+    <div class="logo"></div>
   </div>
   <div class="buscador">
     <input type="text" placeholder="Buscar...">
@@ -14,9 +14,8 @@
   <div class="nueva-nota">
     <div id="circulo-mas" class="circulo" style="background-color: #252627; color: #F4E5E0;" onclick="agregarNotas()">+</div>
   </div>
-
   <div class="centrar-grid">
-    <div class="notas-grid">
+    <div class="notas-container">
       <% if(notas.length > 0) { %>
         <% notas.forEach(nota => { %>
           <a href="/edicion-nota/<%= nota._id %>" class="nota">

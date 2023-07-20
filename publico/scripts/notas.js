@@ -1,6 +1,6 @@
 const notasGrid = document.querySelector(".notas-grid");
 
-function createNota() {
+function crearNota() {
   const nota = document.createElement("div");
   nota.classList.add("nota");
 
@@ -10,11 +10,11 @@ function createNota() {
   const titulo = document.createElement("h3");
   titulo.textContent = "Título de la nota";
 
-  const texto = document.createElement("p");
-  texto.textContent = "Escribe el texto aquí...";
+  const cuerpo = document.createElement("p");
+  cuerpo.textContent = "Escribe tu nota aquí...";
 
   contenidoNota.appendChild(titulo);
-  contenidoNota.appendChild(texto);
+  contenidoNota.appendChild(cuerpo);
 
   const flecha = document.createElement("div");
   flecha.classList.add("flecha");

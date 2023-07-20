@@ -1,33 +1,44 @@
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }  
+  /* Tu código actual permanece igual */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  width: 100%;
+  background-image: url("../img/imagen_tinta.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 
-  .contenedor {
-    text-align: center;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .contenido-centrado {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
+/* Estilo para el contenedor que centra su contenido */
+.contenedor {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .oculto{
-    display: none;
-  }
+/* Estilo para centrar el contenido dentro del contenedor */
+.contenido-centrado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
-  
-  
-  
-  
+/* Estilo para el botón */
+button.boton {
+  background-color: #FF3131;
+  font-size: 40px;
+}
+
+/* Estilo para ocultar elementos si es necesario */
+.oculto {
+  display: none;
+}
