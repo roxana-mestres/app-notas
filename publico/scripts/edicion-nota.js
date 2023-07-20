@@ -1,4 +1,4 @@
-// BORAR
+// BORRAR
 
 function borrarNota() {
   if (confirm("¿Estás seguro de que deseas borrar la nota?")) {
@@ -66,23 +66,15 @@ tamanosIconos.forEach((icono, index) => {
 
 const circulosColores = document.querySelectorAll('.circulo');
 const divResaltado = document.querySelector('.resaltado');
+const inputColor = document.getElementById('input-color');
 
 circulosColores.forEach(circulo => {
   circulo.addEventListener('click', () => {
     const color = window.getComputedStyle(circulo).backgroundColor;
-    divResaltado.style.backgroundColor = `rgba(${getColorValues(color)}, 0.7)`;
+    divResaltado.style.backgroundColor = color;
+    inputColor.value = color; // Actualizar el valor del input oculto con el color seleccionado
   });
 });
-
-function getColorValues(color) {
-  const matches = color.match(/(\d+),\s*(\d+),\s*(\d+)/);
-  if (matches && matches.length === 4) {
-    return [matches[1], matches[2], matches[3]];
-  }
-  return [];
-}
-
-// Círculos
 
 // Círculos
 

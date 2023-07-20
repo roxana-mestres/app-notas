@@ -21,7 +21,7 @@
       <% if(notas.length > 0) { %>
         <% notas.forEach(nota => { %>
           <a href="/edicion-nota/<%= nota._id %>" class="nota">
-            <div class="contenido-nota color-<%= nota.color %>">
+            <div class="contenido-nota" >
               <h3><%= nota.titulo || "Título de la nota" %></h3>
               <p><%= nota.cuerpo || "Texto de la nota" %></p>
             </div>

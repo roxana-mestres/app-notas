@@ -1,36 +1,15 @@
 <div class="container">
-  <div class="cabecera">
-    <div class="colores">
-      <div class="circulo oculto" style="background-color: #577590;" data-color="#577590"></div>
-      <div class="circulo oculto" style="background-color: #43AA8B;" data-color="#43AA8B"></div>
-      <div class="circulo oculto" style="background-color: #90BE6D;" data-color="#90BE6D"></div>
-      <div class="circulo oculto" style="background-color: #F9C74F;" data-color="#F9C74F"></div>
-      <div class="circulo oculto" style="background-color: #F8961E" data-color="#F8961E"></div>
-      <div class="circulo oculto" style="background-color: #F27E5A" data-color="#F27E5A"></div>
-      <div class="circulo oculto" style="background-color: #F94144" data-color="#F94144"></div>
-    </div>
-    <div class="tamanos">
-      <div class="tamano">
-        <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 30px;">text_increase</span>
-      </div>
-      <div class="tamano">
-        <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 35px;">text_increase</span>
-      </div>
-      <div class="tamano">
-        <span class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;">text_increase</span>
-      </div>
-    </div>
-  </div>
   <form action="/edicion-nota/<%= notaId %>?_method=PUT" method="POST">
+    <input type="hidden" id="input-color" name="color" value="<%= nota.color %>">
     <div class="contenido">
       <div class="titulos">
         <input type="text" name="titulo" class="transparent-input" id="titulo-nota" value="<%= nota.titulo %>" />
         <h3 id="fecha">
-          <%= nota.fecha %>
+          <%= nota.creado.toDateString() %>
         </h3>
       </div>
       <div class="texto">
-        <div class="resaltado">
+        <div class="resaltado" id="div-resaltado">
           <textarea id="cuerpo-nota" class="transparent-input" name="cuerpo"><%= nota.cuerpo %></textarea>
         </div>
       </div>

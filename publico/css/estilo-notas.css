@@ -1,3 +1,6 @@
+:root {
+  --borderColor: #F27E5A; /* Define la variable --borderColor con el color default */
+}
 /* Estilos del encabezado */
 .titulo-logo-buscador {
   display: flex;
@@ -99,7 +102,7 @@ a.nota {
   background-color: #F4E5E0;
   border-width: 15px 2px 2px 15px;
   border-style: solid;
-  border-color: #F27E5A;
+  border-color: var(--borderColor);
   transition: transform 0.2s ease-in-out;
 }
 

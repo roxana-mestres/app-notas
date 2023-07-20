@@ -1,4 +1,4 @@
-body {
+body.index {
   /* Tu código actual permanece igual */
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@ body {
 }
 
 /* Estilo para el botón */
-button.boton {
+button.boton.rojo {
   background-color: #FF3131;
   font-size: 40px;
 }

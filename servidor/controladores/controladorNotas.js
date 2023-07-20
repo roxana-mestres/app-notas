@@ -64,7 +64,8 @@ exports.agregarNotas = async (peticion, respuesta) => {
       const nuevaNota = {
         titulo: "Título de la nueva nota",
         cuerpo: "Contenido de la nueva nota",
-        usuario: usuario.id
+        usuario: usuario.id,
+        creado: new Date() // Establecer la fecha de creación actual
       };
 
       const notaCreada = await Nota.create(nuevaNota);
@@ -165,10 +166,10 @@ exports.notasBusqueda = async(peticion, respuesta) => {
   }
 }
 
-exports.notasBuscar = async(peticion, respuesta) => {
-  try{
+exports.notasBuscar = async (peticion, respuesta) => {
+  try {
     let terminosBusqueda = peticion.body.terminosBusqueda;
-    const sinCaracEspeciales = terminosBusqueda.replace(/[^\w\s]/gi, '');
+    const sinCaracEspeciales = terminosBusqueda.replace(/[^\w\s]/gi, '').toLowerCase(); // Convertir a minúsculas
 
     const resultadosBusqueda = await Nota.find({
       $or: [
@@ -180,12 +181,12 @@ exports.notasBuscar = async(peticion, respuesta) => {
     respuesta.render("buscar", {
       resultadosBusqueda,
       layout: "layouts/pag-buscar"
-    })
-
-  }catch(error){
+    });
+  } catch(error) {
     console.log(error);
   }
 }
+
 
 // Página cerrar sesión
 exports.cerrarSesion = (peticion, respuesta) => {
