@@ -172,49 +172,4 @@ exports.borrarNota = async (peticion, respuesta) => {
   }
 };
 
-// Búsqueda
-
-exports.notasBusqueda = async (peticion, respuesta) => {
-  try {
-    // Renderizar la plantilla "/buscar" con un objeto vacío para los resultados de búsqueda y un diseño específico para esta página.
-    respuesta.render("/buscar", {
-      resultadosBusqueda: "",
-      layout: "layouts/pag-buscar"
-    })
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-exports.notasBuscar = async (peticion, respuesta) => {
-  try {
-    let terminosBusqueda = peticion.body.terminosBusqueda;
-
-    // Reemplazar caracteres especiales, tildes y diacríticos por sus equivalentes sin tilde.
-
-
-    const sinCaracEspeciales = terminosBusqueda.replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+/ig, "").toLowerCase();
-
-    /* Realizar una consulta en la BD para buscar notas que coincidan con los términos de búsqueda y pertenezcan al usuario autenticado.
-
-    $or - operador de mongoDB que se usa para búsquedas con más de una condición. Deben cumplir con al menos una
-    
-    $regex, también de mongoDB, se usa para buscar documentos que contengan un valor que coincida con la expresión regular */
-
-    const resultadosBusqueda = await Nota.find({
-      $or: [
-        { titulo: { $regex: new RegExp(sinCaracEspeciales) } },
-        { cuerpo: { $regex: new RegExp(sinCaracEspeciales) } }
-      ]
-    }).where({ usuario: peticion.user.id });
-
-    respuesta.render("buscar", {
-      resultadosBusqueda,
-      layout: "layouts/pag-buscar"
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 
