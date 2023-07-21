@@ -8,8 +8,7 @@ const Usuario = require("../models/Usuario");
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "http://localhost:10000/google/callback",
-  responseType: "postmessage"
+  callbackURL: "https://app-notas.onrender.com/google/callback"
 },
   async function (accessToken, refreshToken, profile, done) {
     console.log("Google authentication callback received");
