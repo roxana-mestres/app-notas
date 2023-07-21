@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
 const conectarBD = async () => {
     try {
+        //Conexión a la BD utilizando la URL .env "MONGODB_URI".
         const conectar = await mongoose.connect(process.env.MONGODB_URI);
         console.log(`La base de datos está conectada: ${conectar.connection.host}`);
     } catch (error) {
@@ -9,4 +9,5 @@ const conectarBD = async () => {
     }
 }
 
+// Exportar conectarBD para que pueda ser utilizada en otros módulos.
 module.exports = conectarBD;

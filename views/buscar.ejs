@@ -3,14 +3,19 @@
     <div class="contenido-centrado">
         <h1>Notas:</h1>
         <div class="resultado">
+            <!-- Comprueba si hay resultados de búsqueda -->
             <% if(resultadosBusqueda !="" ) { %>
+                <!-- Itera sobre los resultados de búsqueda -->
                 <% resultadosBusqueda.forEach(function (nota, index) { %>
                     <a href="/edicion-nota/<%= nota._id %>">
                         <h3>
+                            <!-- Muestra el título de la nota -->
                             <%= nota.titulo %>
                         </h3>
                     </a>
-                    <% }) %>
+                    <!-- Fin del bucle de resultados -->
+                    <% }) %> 
+                    <!-- Si no hay resultados de búsqueda, muestra un mensaje de que no se encontraron notas -->
                         <% } else {%>
                             <p>No se ha encontrado ninguna nota</p>
                             <% } %>

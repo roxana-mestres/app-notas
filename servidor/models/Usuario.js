@@ -1,3 +1,5 @@
+/* modelo de usuario (dejé los nombres originales) */
+
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
