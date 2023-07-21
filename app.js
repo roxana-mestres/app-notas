@@ -11,7 +11,7 @@ const passport = require("passport"); // Librería para la autenticación de usu
 const MongoStore = require("connect-mongo"); // Proporciona almacenamiento de sesiones basado en MongoDB
 
 const app = express(); // Crea una instancia de la aplicación Express
-const puerto = process.env.PORT || 10000; // Configura el puerto del servidor, utilizando el valor del archivo .env o el puerto 10000 por defecto.
+const puerto = process.env.PORT || 5000 || 10000; // Configura el puerto del servidor, utilizando el valor del archivo .env o el puerto 5000 || 10000 por defecto.
 
 // Configuración de sesiones y middleware de Passport
 app.use(session({
