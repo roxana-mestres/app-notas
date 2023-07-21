@@ -9,7 +9,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: "http://localhost:10000/google/callback",
-  responseType: "code"
+  responseType: "postmessage"
 },
   async function (accessToken, refreshToken, profile, done) {
     console.log("Google authentication callback received");
