@@ -72,11 +72,17 @@ form {
   margin-right: 20px;
 }
 
+.circulo,
+.boton-subir {
+  cursor: pointer;
+}
+
 .notas-contenedor {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-auto-flow: dense;
   gap: 20px;
+  margin-top: 30px;
   margin-bottom: -20px;
 }
 

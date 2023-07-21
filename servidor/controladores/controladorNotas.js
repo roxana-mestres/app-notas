@@ -2,7 +2,9 @@ const Nota = require("../models/Notas");
 const mongoose = require("mongoose");
 const passport = require("passport");
 
-// Página inicial
+// Página notas
+
+// Mostrar notas en página notas
 exports.notas = async (peticion, respuesta) => {
   // Objeto que almacena datos locales (título)
   const locals = {
@@ -29,13 +31,13 @@ exports.notas = async (peticion, respuesta) => {
             cuerpo: { $substr: ["$cuerpo", 0, 150] },
             _id: 1
           }
-           /*Especifico qué campos quiero incluir en el resultado de la consulta. Se limitan caracteres de titulo y cuerpo.*/
+          /*Especifico qué campos quiero incluir en el resultado de la consulta. Se limitan caracteres de titulo y cuerpo.*/
         },
         {
           $sort: {
             creado: -1
           }
-           /*Aquí se ordenan los documentos resultantes en función del campo creado. -1 le indica que ordene de forma descendente (más reciente primero)*/
+          /*Aquí se ordenan los documentos resultantes en función del campo creado. -1 le indica que ordene de forma descendente (más reciente primero)*/
         }
       ]);
 
@@ -99,7 +101,7 @@ exports.verNota = async (peticion, respuesta) => {
     console.log("ID de la nota:", peticion.params.id);
     console.log("ID del usuario:", peticion.user.id);
 
-    // Buscar la nota por su ID en la BD y asegurarse de que pertenece al usuario autenticado. lean() es de mongoose (permite obtener objeto JS, en vez de instancias completas de los modelos)
+    // Buscar la nota por su ID en la BD y asegurarse de que pertenece al usuario autenticado. lean() es de mongoose (permite obtener objeto JS, en vez de instancias completas de los modelos *Esto lo vi en un video*)
     const nota = await Nota.findById({ _id: peticion.params.id }).where({
       usuario: peticion.user.id
     }).lean();
@@ -174,10 +176,10 @@ exports.borrarNota = async (peticion, respuesta) => {
 
 exports.notasBusqueda = async (peticion, respuesta) => {
   try {
-    // Renderizar la plantilla "notas/buscar" con un objeto vacío para los resultados de búsqueda y un diseño específico para esta página.
-    respuesta.render("notas/buscar", {
+    // Renderizar la plantilla "/buscar" con un objeto vacío para los resultados de búsqueda y un diseño específico para esta página.
+    respuesta.render("/buscar", {
       resultadosBusqueda: "",
-      layout: "layouts/pag-notas"
+      layout: "layouts/pag-buscar"
     })
   } catch (error) {
     console.log(error);
@@ -188,19 +190,21 @@ exports.notasBuscar = async (peticion, respuesta) => {
   try {
     let terminosBusqueda = peticion.body.terminosBusqueda;
 
-    // Reemplazar caracteres especiales, acentuados y diacríticos por sus equivalentes sin acento.
-    const sinCaracEspeciales = terminosBusqueda.replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+/g, "").toLowerCase();
+    // Reemplazar caracteres especiales, tildes y diacríticos por sus equivalentes sin tilde.
+
+
+    const sinCaracEspeciales = terminosBusqueda.replace(/[^a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+/ig, "").toLowerCase();
 
     /* Realizar una consulta en la BD para buscar notas que coincidan con los términos de búsqueda y pertenezcan al usuario autenticado.
 
-    $or es un operador de consulta de mongoDB que se usa para búsquedas con más de una condición. Deben cumplir con al menos una
+    $or - operador de mongoDB que se usa para búsquedas con más de una condición. Deben cumplir con al menos una
     
-    $regex, también de mongoDB, se usa para buscar documentos que contengan un valor que coincida con la expresión regular*/
+    $regex, también de mongoDB, se usa para buscar documentos que contengan un valor que coincida con la expresión regular */
 
     const resultadosBusqueda = await Nota.find({
       $or: [
-        { titulo: { $regex: new RegExp(sinCaracEspeciales, "i") } },
-        { cuerpo: { $regex: new RegExp(sinCaracEspeciales, "i") } }
+        { titulo: { $regex: new RegExp(sinCaracEspeciales) } },
+        { cuerpo: { $regex: new RegExp(sinCaracEspeciales) } }
       ]
     }).where({ usuario: peticion.user.id });
 

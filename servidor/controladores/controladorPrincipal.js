@@ -17,7 +17,7 @@ exports.pag404 = async (peticion, respuesta) => {
 
     respuesta.render("pag-404", {
         locals,
-        layout: "../views/layouts/pag-404"
+        layout: "layouts/pag-404"
     });
 };
 
@@ -29,6 +29,6 @@ exports.pag401 = async (peticion, respuesta) => {
 
     respuesta.render("pag-401", {
         locals,
-        layout: "../views/layouts/pag-401"
+        layout: "layouts/pag-401"
     });
 };

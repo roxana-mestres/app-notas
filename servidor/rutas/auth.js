@@ -14,7 +14,7 @@ passport.use(new GoogleStrategy({
     console.log("Google authentication callback received");
     console.log("Profile:", profile);
 
-/* Aquí se crea un objeto con la información del nuevo usuario.*/
+    /* Aquí se crea un objeto con la información del nuevo usuario.*/
 
     const nuevoUsuario = {
       googleId: profile.id,
