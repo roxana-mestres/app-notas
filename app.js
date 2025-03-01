@@ -28,28 +28,29 @@ app.use(passport.session());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(methodOverride("_method"));
 
 // Conectar a la base de datos
 conectarBD();
 
+// Configuración de vistas y layout
 app.set("views", path.join(__dirname, "views"));
 app.use(layouts);
 app.set("view engine", "ejs");
 app.set("layout", "layouts/principal");
 
-// Rutas específicas para archivos JavaScript y CSS
-app.use("/app-notas/scripts", express.static(path.join(__dirname, "publico", "scripts"))); 
+// Montar archivos estáticos para CSS, scripts e imágenes en la subruta /app-notas
 app.use("/app-notas/css", express.static(path.join(__dirname, "publico", "css")));
+app.use("/app-notas/scripts", express.static(path.join(__dirname, "publico", "scripts")));
+app.use("/app-notas/img", express.static(path.join(__dirname, "publico", "img")));
 
-// Rutas generales para autenticación y la página principal
-app.use("/app-notas/", require(path.join(__dirname, "servidor", "rutas", "auth"))); 
-app.use("/app-notas/", require(path.join(__dirname, "servidor", "rutas", "index")));
+// Montar las rutas de la aplicación en /app-notas
+app.use("/app-notas", require(path.join(__dirname, "servidor", "rutas", "auth")));
+app.use("/app-notas", require(path.join(__dirname, "servidor", "rutas", "index")));
 
 // Ruta 404 - Página no encontrada
-app.use((peticion, respuesta) => {
-  respuesta.status(404).render("pag-404");
+app.use((req, res) => {
+  res.status(404).render("pag-404");
 });
 
 app.listen(puerto, () => {
