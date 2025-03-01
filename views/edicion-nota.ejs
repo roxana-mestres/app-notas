@@ -1,21 +1,18 @@
 <div class="contenedor">
-  <!-- Formulario para enviar la solicitud de actualización de la nota utilizando el método PUT -->
-  <form action="/edicion-nota/<%= notaId %>?_method=PUT" method="POST">
+  <form action="/app-notas/edicion-nota/<%= notaId %>?_method=PUT" method="POST">
     <div class="contenido">
       <div class="titulos">
-        <!-- Campo de entrada para el título de la nota -->
         <textarea name="titulo" class="transparent-input" id="titulo-nota"><%= nota.titulo %></textarea>
       </div>
       <div class="texto">
         <div class="resaltado" id="div-resaltado">
-          <!-- Campo de entrada para el cuerpo de la nota -->
           <textarea id="cuerpo-nota" class="transparent-input" name="cuerpo"><%= nota.cuerpo %></textarea>
         </div>
       </div>
     </div>
     <div class="footer">
       <div class="footer-icons">
-        <span class="material-symbols-outlined"><a href="/notas"
+        <span class="material-symbols-outlined"><a href="/app-notas/notas"
             style="color: #F4E5E0; font-size: 40px;">home</a></span>
         <button type="submit" class="material-symbols-outlined" style="color: #F4E5E0; font-size: 40px;">save</button>
         <button id="borrar-nota" type="button" style="color: #F4E5E0; font-size: 40px;" onclick="borrarNota()">
@@ -24,8 +21,7 @@
       </div>
     </div>
   </form>
-  <form id="borrar-nota-form" action="/edicion-nota/<%= notaId %>?_method=DELETE" method="POST" style="display: none;">
-    <!-- Formulario oculto para enviar la solicitud de eliminación de la nota utilizando el método DELETE -->
+  <form id="borrar-nota-form" action="/app-notas/edicion-nota/<%= notaId %>?_method=DELETE" method="POST" style="display: none;">
     <input type="hidden" name="_method" value="DELETE">
   </form>
 </div>

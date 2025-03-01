@@ -1,5 +1,3 @@
-/* Controladores de Node que permiten renderizar las distintas páginas de la aplicación (al igual que el controladorNotas) */
-
 //Página inicial
 exports.paginaInicial = async (peticion, respuesta) => {
     const locals = {

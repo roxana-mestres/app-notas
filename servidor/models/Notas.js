@@ -1,5 +1,3 @@
-/* Modelo de la nota. Esto permite que la BD sepa en qué consiste una nota */
-
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;

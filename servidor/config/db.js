@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const conectarBD = async () => {
   try {
-    // Conexión a la BD utilizando la URL .env "MONGODB_URI" y las opciones useNewUrlParser y useUnifiedTopology
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -14,5 +13,4 @@ const conectarBD = async () => {
   }
 };
 
-// Exportar conectarBD para que pueda ser utilizada en otros módulos.
 module.exports = conectarBD;

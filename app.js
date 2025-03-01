@@ -1,57 +1,56 @@
-require("dotenv").config(); // Carga las variables de entorno definidas en el archivo .env
+require("dotenv").config();
 
-const express = require("express"); // Importa el módulo Express.
-const path = require("path"); // Proporciona funciones para trabajar con rutas de archivos y directorios
-const methodOverride = require("method-override"); // Permite el uso de métodos HTTP PUT y DELETE en formularios, en vez de solo GET y POST
-const mongoose = require("mongoose"); // Librería para interactuar con MongoDB y realizar operaciones en la base de datos. Permite usar MongoDB de forma similar a como se usa una librería tradicional de bases de datos SQL, proporcionando un esquema flexible
-const layouts = require("express-ejs-layouts"); // Middleware para el motor de plantillas EJS y el uso de layouts
-const conectarBD = require("./servidor/config/db"); // Función para establecer la conexión con MongoDB
-const session = require("express-session"); // Middleware para gestionar sesiones en Express
-const passport = require("passport"); // Librería para la autenticación de usuarios
-const MongoStore = require("connect-mongo"); // Proporciona almacenamiento de sesiones basado en MongoDB
+const express = require("express");
+const path = require("path");
+const methodOverride = require("method-override");
+const mongoose = require("mongoose"); 
+const layouts = require("express-ejs-layouts");
+const conectarBD = require("./servidor/config/db");
+const session = require("express-session");
+const passport = require("passport");
+const MongoStore = require("connect-mongo");
 
-const app = express(); // Crea una instancia de la aplicación Express
-const puerto = process.env.PORT || 5000; // Configura el puerto del servidor, utilizando el valor del archivo .env o el puerto 5000 || 10000 por defecto.
+const app = express();
+const puerto = process.env.PORT || 3003;
 
 // Configuración de sesiones y middleware de Passport
 app.use(session({
-  secret: 'unastringcualquiera', // Secreto utilizado para firmar la cookie de la sesión
-  resave: false, // No se guardará la sesión en cada solicitud si no hay cambios
-  saveUninitialized: true, // Guarda una sesión vacía en el almacenamiento
-  store: MongoStore.create({ // Almacenamiento de sesiones basado en MongoDB (connect-mongo)
-    mongoUrl: process.env.MONGODB_URI // URL de conexión a MongoDB obtenida del archivo .env
+  secret: 'unastringcualquiera',
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI
   })
 }));
 
-app.use(passport.initialize()); // Inicializa Passport y lo agrega como middleware en la aplicación
-app.use(passport.session()); // Establece la persistencia de la autenticación en la sesión
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(express.urlencoded({ extended: true })); // Analiza los datos de formulario y los almacena en peticion.body
-app.use(express.json()); // Analiza los datos en formato JSON y los almacena en peticion.body
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "publico"))); // Sirve archivos estáticos desde la carpeta "publico". path.join permite concatenar segmentos de rutas o directorios y crear una ruta completa.
-app.use(methodOverride("_method")); // Habilita el uso de métodos HTTP PUT y DELETE en formularios
+app.use(express.static(path.join(__dirname, "publico")));
+app.use(methodOverride("_method"));
 
 // Conectar a la base de datos
-conectarBD(); // Establece la conexión con MongoDB
+conectarBD();
 
-// Establece el directorio de vistas y configuración del motor de plantillas EJS
-app.set("views", path.join(__dirname, "views")); // Establece la carpeta "views" como directorio de vistas
-app.use(layouts); // Habilita el uso de layouts con el motor de plantillas EJS
-app.set("view engine", "ejs"); // Configura el motor de plantillas EJS para procesar las vistas
-app.set("layout", "layouts/principal"); // Establece el layout "principal" como el diseño predeterminado
+app.set("views", path.join(__dirname, "views"));
+app.use(layouts);
+app.set("view engine", "ejs");
+app.set("layout", "layouts/principal");
 
 // Rutas específicas para archivos JavaScript y CSS
-app.use("/scripts", express.static(path.join(__dirname, "publico", "scripts"))); // Sirve archivos JavaScript desde la carpeta "publico/scripts"
-app.use("/css", express.static(path.join(__dirname, "publico", "css"))); // Sirve archivos CSS desde la carpeta "publico/css"
+app.use("/scripts", express.static(path.join(__dirname, "publico", "scripts"))); 
+app.use("/css", express.static(path.join(__dirname, "publico", "css")));
 
 // Rutas generales para autenticación y la página principal
-app.use("/", require(path.join(__dirname, "servidor", "rutas", "auth"))); // Agrega las rutas de autenticación
-app.use("/", require(path.join(__dirname, "servidor", "rutas", "index"))); // Agrega las rutas de la página principal
+app.use("/", require(path.join(__dirname, "servidor", "rutas", "auth"))); 
+app.use("/", require(path.join(__dirname, "servidor", "rutas", "index")));
 
 // Ruta 404 - Página no encontrada
 app.use((peticion, respuesta) => {
-  respuesta.status(404).render("pag-404"); // Renderiza la página de error 404 cuando no se encuentra una ruta válida
+  respuesta.status(404).render("pag-404");
 });
 
 app.listen(puerto, () => {
