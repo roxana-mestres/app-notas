@@ -39,10 +39,10 @@ passport.use(new GoogleStrategy({
   }));
 
 // Ruta para iniciar sesión con Google
-router.get('/app-notas/auth/google',
+router.get('/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] }));
 
-router.get('/app-notas/google/callback',
+router.get('/google/callback',
   passport.authenticate('google', {
     failureRedirect: "/app-notas/",
     successRedirect: "/app-notas/notas"
@@ -50,7 +50,7 @@ router.get('/app-notas/google/callback',
 );
 
 // Cerrar sesión
-router.get("/app-notas/cerrar-sesion", (peticion, respuesta) => {
+router.get("/cerrar-sesion", (peticion, respuesta) => {
   console.log("Cerrando sesión del usuario");
 
   peticion.session.destroy(error => {
