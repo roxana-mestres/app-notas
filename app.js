@@ -39,7 +39,6 @@ app.use(layouts);
 app.set("view engine", "ejs");
 app.set("layout", "layouts/principal");
 
-// Montar archivos estáticos para CSS, scripts e imágenes en la subruta /app-notas
 app.use("/app-notas/css", express.static(path.join(__dirname, "publico", "css")));
 app.use("/app-notas/scripts", express.static(path.join(__dirname, "publico", "scripts")));
 app.use("/app-notas/img", express.static(path.join(__dirname, "publico", "img")));
