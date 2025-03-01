@@ -28,35 +28,30 @@ app.use(passport.session());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(methodOverride("_method"));
 
 // Conectar a la base de datos
 conectarBD();
 
-// 1) Montar la carpeta de estáticos en /app-notas
-app.use("/app-notas", express.static(path.join(__dirname, "publico")));
-
-// 2) Opcional: si quieres rutas separadas para /scripts o /css
-//    y mantener "/app-notas/css/..." en tus plantillas, haz:
-app.use("/app-notas/scripts", express.static(path.join(__dirname, "publico", "scripts")));
-app.use("/app-notas/css", express.static(path.join(__dirname, "publico", "css")));
-
-// Configurar vistas
 app.set("views", path.join(__dirname, "views"));
 app.use(layouts);
 app.set("view engine", "ejs");
 app.set("layout", "layouts/principal");
 
-// 3) Montar las rutas en /app-notas
-app.use("/app-notas", require(path.join(__dirname, "servidor", "rutas", "auth")));
-app.use("/app-notas", require(path.join(__dirname, "servidor", "rutas", "index")));
+// Rutas específicas para archivos JavaScript y CSS
+app.use("/app-notas/scripts", express.static(path.join(__dirname, "publico", "scripts"))); 
+app.use("/app-notas/css", express.static(path.join(__dirname, "publico", "css")));
 
-// 4) Ruta 404 (si ninguna anterior coincide)
-app.use((req, res) => {
-  res.status(404).render("pag-404");
+// Rutas generales para autenticación y la página principal
+app.use("/app-notas/", require(path.join(__dirname, "servidor", "rutas", "auth"))); 
+app.use("/app-notas/", require(path.join(__dirname, "servidor", "rutas", "index")));
+
+// Ruta 404 - Página no encontrada
+app.use((peticion, respuesta) => {
+  respuesta.status(404).render("pag-404");
 });
 
-// Iniciar el servidor
 app.listen(puerto, () => {
   console.log(`El servidor está funcionando en el puerto ${puerto}`);
 });
